@@ -2,14 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export function Navbar(props) {
+import "./Navbar.css";
+
+export default function Navbar(props) {
   return (
     <nav>
       <ul className="page-links">
-        <li>Home</li>
-        <li>Restaurants</li>
-        <li>Timer</li>
-        <li>Account</li>
+        <li>
+          <Link to={`/`}>Home</Link>
+        </li>
+        <li>
+          <Link to={`/restaurants`}>Restaurants</Link>
+        </li>
+        <li>
+          <Link to={`/timer`}>Timer</Link>
+        </li>
+        <li>
+          <Link to={`/account`}>Account</Link>
+        </li>
       </ul>
     </nav>
   );

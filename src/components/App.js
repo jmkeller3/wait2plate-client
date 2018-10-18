@@ -10,19 +10,19 @@ import Restaurants from "./Restaurants";
 import Timer from "./Timer";
 import Account from "./Account";
 import Landing from "./Landing";
-import { Navbar } from "./Navbar";
+import Navbar from "./Navbar";
 
 export default function App(props) {
   return (
     <Router>
-      <div>
+      <div className="container">
         <Navbar />
-        <main>
+        <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/restaurants" component={Restaurants} />
           <Route exact path="/timer" component={Timer} />
-          <Route exact path="/account/:userId" component={Account} />
-        </main>
+          <Route exact path="/account/" component={Account} />
+        </Switch>
         <Footer />
       </div>
     </Router>

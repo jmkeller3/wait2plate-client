@@ -1,0 +1,21 @@
+.login {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #000;
+}
+
+input,
+label {
+  margin: 10px;
+  text-align: left;
+}
+
+form {
+  text-align: center;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 3px;
+  box-shadow: none;
+}

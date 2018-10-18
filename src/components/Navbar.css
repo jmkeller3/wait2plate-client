@@ -1,0 +1,19 @@
+nav {
+  background-color: #b10b0b;
+  height: 60px;
+}
+
+li {
+  display: inline-block;
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px 10px 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #fff;
+}

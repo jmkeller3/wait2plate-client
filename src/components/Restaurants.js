@@ -1,9 +1,15 @@
 import React from "react";
 
-export function Restaurants(props) {
+export default function Restaurants(props) {
   return (
-    <div>
-      <h1>Here are some options near you!</h1>
-    </div>
+    <main role="main">
+      <header role="banner">
+        <h1>Search for Restaurants</h1>
+      </header>
+
+      <section>
+        <h3>List</h3>
+      </section>
+    </main>
   );
 }
