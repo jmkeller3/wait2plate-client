@@ -1,6 +1,37 @@
 // Login
 export const login = async (username, pass) => {
   let users = JSON.parse(localStorage.getItem("users"));
+  // users: [{
+  //  id: 1,
+  //  username: test
+  //  email: test@test.com
+  //  password: password123
+  //  reports: [{
+  //    id: 100
+  //    restaurantId: 1000
+  //    time: 8:47
+  // }]
+  // }, {
+  //  id: 2,
+  //  username: john
+  //  email: john@john.com
+  //  password: password123
+  //  reports: [{
+  //    id: 101
+  //    restaurantId: 1001
+  //    time: 12:04
+  // }]
+  // }, {
+  //  id: 3,
+  //  username: amanda
+  //  email: amanda@amanda.com
+  //  password: password123
+  //  reports: [{
+  //    id: 102
+  //    restaurantId: 1002
+  //    time: 18:47
+  // }]
+  // }]
 
   let authenication = function(user) {
     return username === user.username && pass === user.password;

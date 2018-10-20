@@ -25,15 +25,6 @@ export default function Login(props) {
             />
           </div>
           <div>
-            <label for="zip-code">Zip Code</label>
-            <input
-              type="text"
-              name="zip-code"
-              id="zip-code"
-              placeholder="12345"
-            />
-          </div>
-          <div>
             <label for="username">Email</label>
             <input type="text" name="username" id="username" />
           </div>

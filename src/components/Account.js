@@ -6,7 +6,7 @@ export default function Account(props) {
   return (
     <main role="main">
       <header role="banner">
-        <h1>User Account</h1>
+        <h1>Welcome {props.username}</h1>
         <h2>A place to review your points and edit your times.</h2>
       </header>
 
@@ -14,7 +14,7 @@ export default function Account(props) {
         <header>
           <h3>My Points</h3>
           <div className="points">
-            <span>55</span>!
+            <span>{props.points}</span>!
           </div>
         </header>
       </section>
