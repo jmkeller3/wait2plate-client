@@ -3,39 +3,47 @@ export const login = async (username, pass) => {
   let users = JSON.parse(localStorage.getItem("users"));
   // users: [{
   //  id: 1,
-  //  username: test
-  //  email: test@test.com
-  //  password: password123
+  //  username: test,
+  //  email: test@test.com,
+  //  password: password123,
+  //  points: 55,
   //  reports: [{
-  //    id: 100
-  //    restaurantId: 1000
-  //    time: 8:47
+  //    id: 100,
+  //    restaurantId: 1000,
+  //    restaurantName: Dave's Cafe
+  //    time: 525000,
+  //    date: October 2, 2018
   // }]
   // }, {
   //  id: 2,
-  //  username: john
-  //  email: john@john.com
-  //  password: password123
+  //  username: john,
+  //  email: john@john.,
+  //  password: password123,
+  //  points: 12,
   //  reports: [{
-  //    id: 101
-  //    restaurantId: 1001
-  //    time: 12:04
+  //    id: 101,
+  //    restaurantId: 1001,
+  //    restaurantName: Bill's Shop,
+  //    time: 726000,
+  //    date: October 3, 2018
   // }]
   // }, {
   //  id: 3,
-  //  username: amanda
-  //  email: amanda@amanda.com
-  //  password: password123
+  //  username: amanda,
+  //  email: amanda@amanda.com,
+  //  password: password123,
+  //  points: 7,
   //  reports: [{
-  //    id: 102
-  //    restaurantId: 1002
-  //    time: 18:47
+  //    id: 102,
+  //    restaurantId: 1002,
+  //    time: 1128000,
+  //    date: October 4, 2018
   // }]
   // }]
 
-  let authenication = function(user) {
+  function authenication(user) {
     return username === user.username && pass === user.password;
-  };
+  }
 
   let user = users.find(authenication);
   if (user == null) {
@@ -71,31 +79,32 @@ export const signup = async (username, email, pass) => {
 // Send to server: geolocation || search value
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
-export const searchRestaurants = async ({ geolocation, search, JWT }) => {
+export const searchRestaurants = async ({ geolocation, cityState, JWT }) => {
   let restaurants = JSON.parse(localStorage.getItem("restaurants"));
   // [{
   //   id: 1
   //   name: "Bill Bob's Burgers",
   //   address: "123 Main St. Lehi, UT 84043",
   //   distance: "1.4 mi",
-  //   times: [6:32, 7:05, 8:13]
+  //   reported times: [392000, 420000, 498000]
+  //
   // },
   // {
   //   id: 2,
   //   name: "Grace's Bakery",
   //   address: "3 Main St. Lehi, UT 84043",
   //   distance: "2.4 mi",
-  //   times: [7:44, 9:53]
+  //   reported times: [465000, 594000]
   // },
   // {
   //   id: 3,
   //   name: "Stevo's Bar and Grill",
   //   address: "100 Center St. Lehi, UT 84043",
   //   distance: "0.5 mi",
-  //   times: [12:55]
+  //   reported times: [780000]
   // }];
 
-  let location = geolocation || search;
+  let location = geolocation || cityState;
 
   return restaurants.sort();
 };
@@ -103,19 +112,40 @@ export const searchRestaurants = async ({ geolocation, search, JWT }) => {
 // Report Time
 // Send to server: Restaurant id, time, JWT
 // Get from server: Send user's updated points
-export const reportTime = async (restaurant, time, JWT) => {
+export const reportTime = async (restaurantId, time, JWT) => {
   let restaurants = JSON.parse(localStorage.getItem("restaurants"));
-  let user = JWT.id;
 
-  let restaurantId = restaurant.id;
-  let restaurantReport = function(id) {
-    return id === restaurants.id;
-  };
-  let restaurant = restaurants.find(restaurantReport(restaurantId));
+  let updatedRestaurants = restaurants.map(restaurant => {
+    if (restaurantId === restaurant.id) {
+      restaurant.times.push(time);
+    }
+    return restaurant;
+  });
 
-  restaurant[times].push(time);
+  let users = JSON.parse(localStorage.getItem("users"));
 
-  return restaurant;
+  function findUser(user) {
+    return user.id === JWT;
+  }
+
+  let userIndex = users.findIndex(findUser);
+
+  let user = users[userIndex];
+
+  user.reports.push({
+    id: Math.random() + 100,
+    restaurantId,
+    time,
+    date: Date.now()
+  });
+  user.points += 1;
+
+  users[userIndex] = user;
+
+  localStorage.setItem("restaurants", JSON.stringify(updatedRestaurants));
+  localStorage.setItem("users", JSON.stringify(users));
+
+  return user.points;
 };
 
 // Get User Reported Times
@@ -124,15 +154,20 @@ export const reportTime = async (restaurant, time, JWT) => {
 export const accountUser = async JWT => {
   let users = JSON.parse(localStorage.getItem("users"));
 
-  let authenication = function(user) {
+  function authenication(user) {
     return JWT === user.id;
-  };
+  }
 
-  let user = users.find(authenication);
+  let user = users.find(authenication());
   if (user == null) {
     throw Error(`Bad login request`);
   }
-  return user.reports;
+
+  let userData = {
+    reports: user.reports,
+    points: user.points
+  };
+  return userData;
 };
 
 // Edit Reported Times
