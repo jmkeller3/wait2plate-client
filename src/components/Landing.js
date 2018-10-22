@@ -38,13 +38,20 @@ export default function Landing(props) {
       <section>
         <h3>Details about 3rd party APIs and secrutiy</h3>
         <p>
-          The App utilizes Yelp's API to search nearby restaurants. Your
-          information will be kept private and not be sold for any reason.
+          In addition to its own API, Wait2Plate utilizes Yelp's API to search
+          nearby restaurants for users. Your information will be kept private
+          and not be sold for any reason.
         </p>
       </section>
 
       <section>
         <h3>About Designer</h3>
+        <p>
+          John Keller started his coding journey in April of 2018 and has loved
+          it ever since. He enjoys solving problems and making people's lives
+          better through technology. This is his first React web application and
+          hope's it leads to many more.
+        </p>
       </section>
 
       <section>
