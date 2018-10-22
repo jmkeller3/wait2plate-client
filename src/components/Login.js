@@ -9,7 +9,6 @@ export default function Login(props) {
         <h1>Sign up/Login Page</h1>
         <h2>Join the community to enjoy great meals at fast times.</h2>
       </header>
-
       {true ? (
         <section className="signup">
           <header>

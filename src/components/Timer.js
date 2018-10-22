@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Timer.css";
+
 export default class Timer extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +57,11 @@ export default class Timer extends React.Component {
               {this.getMinutes()}:{this.getSeconds()}
             </h1>
           </div>
-          <button type="submit" onClick={this.handleStopClick}>
+          <button
+            type="submit"
+            onClick={this.handleStopClick}
+            className="btn btn-report"
+          >
             Stop and Report
           </button>
         </section>

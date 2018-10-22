@@ -26,12 +26,3 @@ th {
 tr:nth-child(even) {
   background-color: #f17272;
 }
-
-.timer {
-  width: 200px;
-  font: 28px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #444;
-  border: 3px solid #444;
-}

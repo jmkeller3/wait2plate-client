@@ -1,8 +1,39 @@
+.timer {
+  width: 200px;
+  font: 28px;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #700505;
+  border: 3px solid #700505;
+}
+
+.timer-display {
+  color: #700505;
+}
+
+.btn-report {
+  background-color: #700505;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px 32px;
+}
+
+/* Animation */
 .flip-vertical-right {
   width: 100px;
   height: 100px;
-  background-color: #111;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #000;
+  border-radius: 50%;
   position: relative;
+  margin: 30px;
+  margin-left: auto;
+  margin-right: auto;
 
   -webkit-animation: flip-vertical-right 2s
     cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
