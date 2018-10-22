@@ -1,8 +1,14 @@
-import * as actions from '../actions'
+import * as actions from "../actions";
+import { combineReducers } from "redux";
+
+combineReducers;
 
 const initialState = {
-  restaurants = [],
-  users: []
+  fetching: false,
+  fetched: false,
+  users: [],
+  reports: [],
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +26,7 @@ export default (state = initialState, action) => {
     case FIND_RESTAURANT:
       return Object.assign({}, state, {
         ...state
-      }); 
+      });
 
     case GET_USER:
       return Object.assign({}, state, {

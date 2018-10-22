@@ -1,3 +1,22 @@
+export const IS_FETCHING = "IS_FETCHING";
+export const fetching = () => ({
+  type: IS_FETCHING,
+  loading: true
+});
+
+export const FETCHED = "FETCHED";
+export const fetched = () => ({
+  type: FETCHED,
+  loading: false
+});
+
+export const FETCHED_HAS_ERROR = "FETCHED_HAS_ERROR";
+export const fetchedHasError = error => ({
+  type: FETCHED_HAS_ERROR,
+  loading: false,
+  error
+});
+
 export const REPORT_TIME = "REPORT_TIME";
 export const reportTime = time => ({
   type: REPORT_TIME,
