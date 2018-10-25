@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./Login.css";
 
@@ -9,7 +10,7 @@ export default function Login(props) {
         <h1>Sign up/Login Page</h1>
         <h2>Join the community to enjoy great meals at fast times.</h2>
       </header>
-      {true ? (
+      {false ? (
         <section className="signup">
           <header>
             <h3>Sign up</h3>
@@ -65,3 +66,5 @@ export default function Login(props) {
     </div>
   );
 }
+
+// const dispatchToProps = state =>

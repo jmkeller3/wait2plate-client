@@ -14,9 +14,9 @@ export default function App(props) {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/restaurants" component={Restaurants} />
-          <Route exact path="/timer" component={Timer} />
-          <Route exact path="/account/" component={Account} />
+          <Route path="/restaurants" component={Restaurants} />
+          <Route path="/timer" component={Timer} />
+          <Route path="/account/" component={Account} />
         </Switch>
         <Footer />
       </div>

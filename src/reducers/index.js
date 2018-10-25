@@ -1,38 +1,37 @@
 import * as actions from "../actions";
-import { combineReducers } from "redux";
-
-combineReducers;
 
 const initialState = {
   fetching: false,
   fetched: false,
   users: [],
+  user_id: "",
+  token: "",
   reports: [],
+  points: [],
   error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REPORT_TIME:
+    case actions.REPORT_TIME:
       return Object.assign({}, state, {
         ...state
       });
 
-    case ADD_POINT:
+    case actions.ADD_POINT:
       return Object.assign({}, state, {
         ...state
       });
 
-    case FIND_RESTAURANT:
+    case actions.FIND_RESTAURANT:
       return Object.assign({}, state, {
         ...state
       });
 
-    case GET_USER:
+    case actions.GET_USERS:
       return Object.assign({}, state, {
         ...state
       });
-
     default:
       return state;
   }

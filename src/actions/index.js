@@ -1,3 +1,11 @@
+import {
+  getAllUsers,
+  searchRestaurants,
+  accountUser,
+  reportTime,
+  editTime
+} from "./userflow";
+
 export const IS_FETCHING = "IS_FETCHING";
 export const fetching = () => ({
   type: IS_FETCHING,
@@ -17,39 +25,88 @@ export const fetchedHasError = error => ({
   error
 });
 
-export const REPORT_TIME = "REPORT_TIME";
-export const reportTime = time => ({
+export const REPORT_TIME_ACTION = "REPORT_TIME";
+export const reportTimeAction = reports => ({
   type: REPORT_TIME,
-  time
+  reports
+});
+
+export const EDIT_TIME_ACTION = "EDIT_TIME_ACTION";
+export const editTimeAction = (report_id, newTime) => ({
+  type: EDIT_TIME_ACTION,
+  report_id,
+  newTime
 });
 
 export const ADD_POINT = "ADD_POINT";
-export const addPoint = point => ({
+export const addPoint = points => ({
   type: ADD_POINT,
-  point
+  points
 });
 
-export const FIND_RESTAURANT = "FIND_RESTAURANT";
-export const findRestaurant = restaurants => ({
-  type: FIND_RESTAURANT,
+export const FIND_RESTAURANTS = "FIND_RESTAURANTS";
+export const findRestaurants = restaurants => ({
+  type: FIND_RESTAURANTS,
   restaurants
 });
 
-export const GET_USER = "GET_USER";
-export const getUser = user => ({
-  type: GET_USER,
-  user
+export const GET_USERS = "GET_USERS";
+export const getUsers = users => ({
+  type: GET_USERS,
+  users
 });
 
-export const async = () => dispatch => {
-  new Promise()
-    .then(res => {
-      if (!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      return res.json();
-    })
-    .then(data => {
-      dispatch(callback(data));
-    });
+export const GET_USER_REPORTS = "GET_USER_REPORTS";
+export const getUserReports = (reports, points) => ({
+  type: GET_USER_REPORTS,
+  reports,
+  points
+});
+
+export const getUsersThunk = () => async (dispatch, getState) => {
+  dispatch(fetching());
+  const JWT = getState().token;
+  const users = await getAllUsers(JWT);
+  dispatch(getUsers(users));
+  dispatch(fetched());
+};
+
+export const getRestaurantsThunk = (geolocation, cityState) => async (
+  dispatch,
+  getState
+) => {
+  dispatch(fetching());
+  const JWT = getState().token;
+  const restaurants = await searchRestaurants({ geolocation, cityState, JWT });
+  dispatch(findRestaurants(restaurants));
+  dispatch(fetched());
+};
+
+export const reportTimeThunk = (time, restaurant) => async (
+  dispatch,
+  getState
+) => {
+  dispatch(fetching());
+  const JWT = getState().token;
+  const points = await reportTime(restaurant, time, JWT);
+  dispatch(addPoint(points));
+  dispatch(fetched());
+};
+
+export const accountUserThunk = () => async (dispatch, getState) => {
+  dispatch(fetching());
+  const JWT = getState().token;
+  const { reports, points } = await accountUser(JWT);
+  dispatch(getUserReports(reports, points));
+  dispatch(fetched);
+};
+
+export const editTimeThunk = (reportId, newTime) => async (
+  dispatch,
+  getState
+) => {
+  dispatch(fetching());
+  const JWT = getState().token;
+  await editTime(JWT, reportId, newTime);
+  dispatch(editTime);
 };

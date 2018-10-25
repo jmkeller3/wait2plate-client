@@ -7,7 +7,6 @@ export default class Timer extends React.Component {
     super(props);
     this.state = {
       secondsElapsed: 0,
-      laps: [],
       lastClearedIncrementer: null
     };
     this.incrementer = null;

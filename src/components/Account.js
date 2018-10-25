@@ -1,12 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./Account.css";
 
-export default function Account(props) {
+export function Account(props) {
   return (
     <main role="main">
       <header role="banner">
-        <h1>Welcome {props.username}!</h1>
+        <h1>Welcome {props.user.username}!</h1>
         <h2>A place to review your points and edit your times.</h2>
       </header>
 
@@ -14,7 +15,7 @@ export default function Account(props) {
         <header>
           <h3>My Points</h3>
           <div className="points">
-            <span>{props.points}</span>!
+            <span>{props.user.points}</span>!
           </div>
         </header>
       </section>
@@ -51,3 +52,10 @@ export default function Account(props) {
     </main>
   );
 }
+
+const mapStatetoProps = state => ({
+  user: state.users.find(user => user.id === state.user_id),
+  reports: state.reports
+});
+
+export default connect(mapStatetoProps)(Account);
