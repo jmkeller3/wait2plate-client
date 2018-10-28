@@ -25,8 +25,8 @@ export class Account extends React.Component {
         <section>
           <header>
             <h3>My Times</h3>
-            <div class="times">
-              <Table user={this.props.user} reports={this.props.user.reports} />
+            <div className="times">
+              <Table user={this.props.user} reports={this.props.reports} />
             </div>
           </header>
         </section>
@@ -36,7 +36,8 @@ export class Account extends React.Component {
 }
 
 const mapStatetoProps = state => ({
-  user: state.users[0]
+  user: state.users[0],
+  reports: state.reports
   //.find(user => user.id === state.user_id)
 });
 

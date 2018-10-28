@@ -1,13 +1,7 @@
 import React from "react";
 
 export default function Table(props) {
-  const data = [];
-
-  props.user.reports.map(report => {
-    if (report.id === props.user.id) {
-      return data.push(report);
-    }
-  });
+  const data = props.reports.filter(report => report.user_id === props.user.id);
 
   let tableData = data.map(datum => {
     return (
@@ -27,14 +21,16 @@ export default function Table(props) {
 
   return (
     <table>
-      <tr>
-        <th>Restaurant</th>
-        <th>Time</th>
-        <th>Date</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      {tableData}
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>Time</th>
+          <th>Date</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>{tableData}</tbody>
     </table>
   );
 }

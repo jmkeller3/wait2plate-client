@@ -10,20 +10,21 @@ const initialState = {
       email: "test@test.com",
       password: "password123",
       points: 55,
-      reports: [
-        {
-          id: 100,
-          restaurantId: 1000,
-          restaurantName: "Dave's Cafe",
-          time: 525000,
-          date: "October 2, 2018"
-        }
-      ]
+      reports: []
     }
   ],
   user_id: "",
   token: "",
-  reports: [],
+  reports: [
+    {
+      id: 100,
+      user_id: 1,
+      restaurantId: 1000,
+      restaurantName: "Dave's Cafe",
+      time: 525000,
+      date: "October 2, 2018"
+    }
+  ],
   points: [],
   error: null
 };
@@ -139,9 +140,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_POINT:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return { ...state, points: action.points };
 
     case actions.DELETE_TIME_ACTION:
       return Object.assign({}, state, {
@@ -149,19 +148,29 @@ export default (state = initialState, action) => {
       });
 
     case actions.EDIT_TIME_ACTION:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return {
+        ...state,
+        reports: state.reports.map(report => {
+          if (report.id === action.report_id) {
+            return { ...report, time: action.newTime };
+          }
+          return report;
+        })
+      };
 
     case actions.FETCHED:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return {
+        ...state,
+        fetched: true,
+        fetching: false
+      };
 
     case actions.FETCHED_HAS_ERROR:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return {
+        ...state,
+        error: action.error,
+        fetching: false
+      };
 
     case actions.FIND_RESTAURANTS:
       return Object.assign({}, state, {
@@ -179,9 +188,7 @@ export default (state = initialState, action) => {
       });
 
     case actions.IS_FETCHING:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return { ...state, fetching: true };
 
     case actions.REPORT_TIME_ACTION:
       return Object.assign({}, state, {

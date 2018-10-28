@@ -28,14 +28,12 @@ export const editTimeAction = (report_id, newTime) => ({
 
 export const FETCHED = "FETCHED";
 export const fetched = () => ({
-  type: FETCHED,
-  loading: false
+  type: FETCHED
 });
 
 export const FETCHED_HAS_ERROR = "FETCHED_HAS_ERROR";
 export const fetchedHasError = error => ({
   type: FETCHED_HAS_ERROR,
-  loading: false,
   error
 });
 
@@ -47,8 +45,7 @@ export const findRestaurants = restaurants => ({
 
 export const IS_FETCHING = "IS_FETCHING";
 export const fetching = () => ({
-  type: IS_FETCHING,
-  loading: true
+  type: IS_FETCHING
 });
 
 export const REPORT_TIME_ACTION = "REPORT_TIME";
