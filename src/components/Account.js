@@ -26,7 +26,7 @@ export class Account extends React.Component {
           <header>
             <h3>My Times</h3>
             <div class="times">
-              <Table user={props.user} reports={props.user.reports} />
+              <Table user={this.props.user} reports={this.props.user.reports} />
             </div>
           </header>
         </section>

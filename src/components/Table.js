@@ -9,7 +9,7 @@ export default function Table(props) {
     }
   });
 
-  let tableData = data.forEach(datum => {
+  let tableData = data.map(datum => {
     return (
       <tr>
         <td>{datum.restaurantName}</td>
