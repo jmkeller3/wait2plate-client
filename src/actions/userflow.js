@@ -98,7 +98,7 @@ export const accountUser = async JWT => {
     return JWT === user.id;
   }
 
-  user = users.find(authenication());
+  let user = users.find(authenication());
   if (user == null) {
     throw Error(`Bad login request`);
   }
@@ -138,7 +138,7 @@ export const editTime = async (JWT, reportId, newTime) => {
 // Get from server: deletion
 export const deleteTime = async (JWT, reportId) => {
   let users = JSON.parse(localStorage.getItem("users"));
-  let restaurants = JSON.parse(localStorage.getItem("restaurants"));
+  let reports = JSON.parse(localStorage.getItem("reports"));
 
   let authenication = function(user) {
     return JWT === user.id;

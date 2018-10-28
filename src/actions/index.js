@@ -7,10 +7,23 @@ import {
   deleteTime
 } from "./userflow";
 
-export const IS_FETCHING = "IS_FETCHING";
-export const fetching = () => ({
-  type: IS_FETCHING,
-  loading: true
+export const ADD_POINT = "ADD_POINT";
+export const addPoint = points => ({
+  type: ADD_POINT,
+  points
+});
+
+export const DELETE_TIME_ACTION = "DELETE_TIME_ACTION";
+export const deleteTimeAction = report_id => ({
+  type: DELETE_TIME_ACTION,
+  report_id
+});
+
+export const EDIT_TIME_ACTION = "EDIT_TIME_ACTION";
+export const editTimeAction = (report_id, newTime) => ({
+  type: EDIT_TIME_ACTION,
+  report_id,
+  newTime
 });
 
 export const FETCHED = "FETCHED";
@@ -26,35 +39,22 @@ export const fetchedHasError = error => ({
   error
 });
 
-export const REPORT_TIME_ACTION = "REPORT_TIME";
-export const reportTimeAction = reports => ({
-  type: REPORT_TIME,
-  reports
-});
-
-export const EDIT_TIME_ACTION = "EDIT_TIME_ACTION";
-export const editTimeAction = (report_id, newTime) => ({
-  type: EDIT_TIME_ACTION,
-  report_id,
-  newTime
-});
-
-export const DELETE_TIME_ACTION = "DELETE_TIME_ACTION";
-export const deleteTimeAction = report_id => ({
-  type: DELETE_TIME_ACTION,
-  report_id
-});
-
-export const ADD_POINT = "ADD_POINT";
-export const addPoint = points => ({
-  type: ADD_POINT,
-  points
-});
-
 export const FIND_RESTAURANTS = "FIND_RESTAURANTS";
 export const findRestaurants = restaurants => ({
   type: FIND_RESTAURANTS,
   restaurants
+});
+
+export const IS_FETCHING = "IS_FETCHING";
+export const fetching = () => ({
+  type: IS_FETCHING,
+  loading: true
+});
+
+export const REPORT_TIME_ACTION = "REPORT_TIME";
+export const reportTimeAction = reports => ({
+  type: REPORT_TIME_ACTION,
+  reports
 });
 
 export const GET_USERS = "GET_USERS";
