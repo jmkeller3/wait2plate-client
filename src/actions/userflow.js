@@ -144,16 +144,16 @@ export const deleteTime = async (JWT, reportId) => {
     return JWT === user.id;
   };
 
+  let user = users.find(authenication);
+  if (user == null) {
+    throw Error(`Bad login request`);
+  }
+
   function findReport(report) {
     return reportId === report.id;
   }
   let deletedReport = users.findIndex(findReport);
   reports.splice(deletedReport, 1);
-
-  let user = users.find(authenication);
-  if (user == null) {
-    throw Error(`Bad login request`);
-  }
 };
 
 // Get Users

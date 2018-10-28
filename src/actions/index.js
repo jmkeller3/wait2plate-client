@@ -3,7 +3,8 @@ import {
   searchRestaurants,
   accountUser,
   reportTime,
-  editTime
+  editTime,
+  deleteTime
 } from "./userflow";
 
 export const IS_FETCHING = "IS_FETCHING";
@@ -36,6 +37,12 @@ export const editTimeAction = (report_id, newTime) => ({
   type: EDIT_TIME_ACTION,
   report_id,
   newTime
+});
+
+export const DELETE_TIME_ACTION = "DELETE_TIME_ACTION";
+export const deleteTimeAction = report_id => ({
+  type: DELETE_TIME_ACTION,
+  report_id
 });
 
 export const ADD_POINT = "ADD_POINT";
@@ -108,5 +115,13 @@ export const editTimeThunk = (reportId, newTime) => async (
   dispatch(fetching());
   const JWT = getState().token;
   await editTime(JWT, reportId, newTime);
-  dispatch(editTime);
+  dispatch(editTimeAction);
+};
+
+export const deleteTimeThunk = reportId => async (dispatch, getState) => {
+  dispatch(fetching());
+  const JWT = getState().token;
+  await deleteTime(JWT, reportId);
+  dispatch(deleteTimeAction(reportId));
+  dispatch(fetched());
 };
