@@ -15,7 +15,7 @@ export default function Login(props) {
           <header>
             <h3>Sign up</h3>
           </header>
-          <form class="signup-form">
+          <form className="signup-form">
             <div>
               <label for="username">Username</label>
               <input
@@ -45,7 +45,7 @@ export default function Login(props) {
           <header>
             <h3>Login</h3>
           </header>
-          <form class="login-form">
+          <form className="login-form">
             <div>
               <label for="username">Username</label>
               <input
