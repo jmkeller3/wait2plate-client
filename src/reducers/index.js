@@ -26,6 +26,29 @@ const initialState = {
     }
   ],
   points: [],
+  restaurants: [
+    {
+      id: 101,
+      name: "Bill Bob's Burgers",
+      address: "123 Main St. Lehi, UT 84043",
+      distance: "1.4 mi",
+      reported_times: [392000, 420000, 498000]
+    },
+    {
+      id: 102,
+      name: "Grace's Bakery",
+      address: "3 Main St. Lehi, UT 84043",
+      distance: "2.4 mi",
+      reported_times: [465000, 594000]
+    },
+    {
+      id: 103,
+      name: "Stevo's Bar and Grill",
+      address: "100 Center St. Lehi, UT 84043",
+      distance: "0.5 mi",
+      reported_times: [780000]
+    }
+  ],
   error: null
 };
 
