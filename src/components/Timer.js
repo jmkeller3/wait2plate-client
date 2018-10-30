@@ -2,6 +2,8 @@ import React from "react";
 
 import "./Timer.css";
 
+import { ADD_POINT, REPORT_TIME_ACTION } from "../actions";
+
 export default class Timer extends React.Component {
   constructor(props) {
     super(props);

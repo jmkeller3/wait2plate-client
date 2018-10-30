@@ -1,36 +1,47 @@
 import React from "react";
 
-export default function Table(props) {
-  const data = props.reports.filter(report => report.user_id === props.user.id);
+export default class Table extends React.Component {
+  render() {
+    function millisToMinutesAndSeconds(millis) {
+      const minutes = Math.floor(millis / 60000);
+      const seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
 
-  let tableData = data.map(datum => {
-    return (
-      <tr>
-        <td>{datum.restaurantName}</td>
-        <td>{datum.time}</td>
-        <td>{datum.date}</td>
-        <td>
-          <button>Edit</button>
-        </td>
-        <td>
-          <button>Delete</button>
-        </td>
-      </tr>
+    const data = this.props.reports.filter(
+      report => report.user_id === this.props.user.id
     );
-  });
 
-  return (
-    <table>
-      <thead>
+    let tableData = data.map(datum => {
+      let time = millisToMinutesAndSeconds(datum.time);
+      return (
         <tr>
-          <th>Restaurant</th>
-          <th>Time</th>
-          <th>Date</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <td>{datum.restaurantName}</td>
+          <td>{time}</td>
+          <td>{datum.date}</td>
+          <td>
+            <button>Edit</button>
+          </td>
+          <td>
+            <button>Delete</button>
+          </td>
         </tr>
-      </thead>
-      <tbody>{tableData}</tbody>
-    </table>
-  );
+      );
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Restaurant</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>{tableData}</tbody>
+      </table>
+    );
+  }
 }

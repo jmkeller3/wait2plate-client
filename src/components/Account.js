@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import "./Account.css";
 import Table from "./Table";
 
+import {
+  DELETE_TIME_ACTION,
+  EDIT_TIME_ACTION,
+  GET_USER_REPORTS
+} from "../actions";
+
 export class Account extends React.Component {
   render() {
     return (

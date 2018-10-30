@@ -48,7 +48,7 @@ export const fetching = () => ({
   type: IS_FETCHING
 });
 
-export const REPORT_TIME_ACTION = "REPORT_TIME";
+export const REPORT_TIME_ACTION = "REPORT_TIME_ACTION";
 export const reportTimeAction = reports => ({
   type: REPORT_TIME_ACTION,
   reports

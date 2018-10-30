@@ -1,16 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import {
+  FIND_RESTAURANTS,
+  FETCHED,
+  FETCHED_HAS_ERROR,
+  IS_FETCHING
+} from "../actions";
+
 export class Restaurants extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  goToTimer(event) {
+    event.preventDefault();
+    this.props.history.push(`/timer`);
+  }
+
   render() {
     function millisToMinutesAndSeconds(millis) {
       const minutes = Math.floor(millis / 60000);
       const seconds = ((millis % 60000) / 1000).toFixed(0);
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
+
     const restaurantData = this.props.restaurants.map(restaurant => {
       function average(times) {
         return (
@@ -30,11 +44,12 @@ export class Restaurants extends React.Component {
           <td>{restaurant.distance}</td>
           <td>{times}</td>
           <td>
-            <button>Report</button>
+            <button onClick={e => this.goToTimer(e)}>Report</button>
           </td>
         </tr>
       );
     });
+
     return (
       <main role="main">
         <header role="banner">
