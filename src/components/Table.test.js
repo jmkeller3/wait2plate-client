@@ -5,6 +5,6 @@ import Table from "./Table";
 
 describe("<Table />", () => {
   it("Renders without crashing", () => {
-    shallow(<Table />);
+    shallow(<Table reports={[]} />);
   });
 });

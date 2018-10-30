@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Timer.css";
 
-import { ADD_POINT, REPORT_TIME_ACTION } from "../actions";
+import { ADD_POINT, REPORT_TIME_ACTION, reportTimeThunk } from "../actions";
 
 export default class Timer extends React.Component {
   constructor(props) {

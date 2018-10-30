@@ -13,7 +13,6 @@ const initialState = {
       reports: []
     }
   ],
-  user_id: "",
   token: "",
   reports: [
     {
@@ -166,9 +165,10 @@ export default (state = initialState, action) => {
       return { ...state, points: action.points };
 
     case actions.DELETE_TIME_ACTION:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return {
+        ...state,
+        reports: state.reports.filter(report => report.id !== action.report_id)
+      };
 
     case actions.EDIT_TIME_ACTION:
       return {
@@ -195,28 +195,29 @@ export default (state = initialState, action) => {
         fetching: false
       };
 
-    case actions.FIND_RESTAURANTS:
-      return Object.assign({}, state, {
-        ...state
-      });
+    // case actions.FIND_RESTAURANTS:
+    //   return { ...state, restaurants: action.restaurants };
 
     case actions.GET_USERS:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return {
+        ...state,
+        users: action.users
+      };
 
     case actions.GET_USER_REPORTS:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return { ...state, reports: action.reports, points: action.points };
 
     case actions.IS_FETCHING:
       return { ...state, fetching: true };
 
+    case actions.LOGIN_ACTION:
+      return { ...state, token: action.JWT };
+
+    case actions.SIGN_UP_ACTION:
+      return { ...state, token: action.JWT };
+
     case actions.REPORT_TIME_ACTION:
-      return Object.assign({}, state, {
-        ...state
-      });
+      return { ...state, reports: action.reports };
 
     default:
       return state;

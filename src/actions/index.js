@@ -4,7 +4,9 @@ import {
   accountUser,
   reportTime,
   editTime,
-  deleteTime
+  deleteTime,
+  login,
+  signup
 } from "./userflow";
 
 export const ADD_POINT = "ADD_POINT";
@@ -67,6 +69,18 @@ export const getUserReports = (reports, points) => ({
   points
 });
 
+export const LOGIN_ACTION = "LOGIN_ACTION";
+export const loginAction = JWT => ({
+  type: LOGIN_ACTION,
+  JWT
+});
+
+export const SIGN_UP_ACTION = "SIGN_UP_ACTION";
+export const signupAction = JWT => ({
+  type: SIGN_UP_ACTION,
+  JWT
+});
+
 export const getUsersThunk = () => async (dispatch, getState) => {
   dispatch(fetching());
   const JWT = getState().token;
@@ -120,5 +134,19 @@ export const deleteTimeThunk = reportId => async (dispatch, getState) => {
   const JWT = getState().token;
   await deleteTime(JWT, reportId);
   dispatch(deleteTimeAction(reportId));
+  dispatch(fetched());
+};
+
+export const loginThunk = (username, pass) => async dispatch => {
+  dispatch(fetching());
+  const JWT = await login(username, pass);
+  dispatch(loginAction(JWT));
+  dispatch(fetched());
+};
+
+export const signupThunk = (username, email, pass) => async dispatch => {
+  dispatch(fetching());
+  const JWT = await signup(username, email, pass);
+  dispatch(signup(JWT));
   dispatch(fetched());
 };
