@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { SubmissionError } from "redux-form";
-
 import { loginThunk, signupThunk } from "../actions";
 
 import "./Login.css";
@@ -32,17 +30,6 @@ export class Login extends React.Component {
     this.props.dispatch(signupThunk(username, email, pass));
     this.setState({ username: "", email: "", pass: "", cpass: "" });
   };
-
-  submit = values => {
-    window.alert(JSON.stringify(values));
-  };
-
-  getInitialValues() {
-    return {
-      username: "john",
-      password: ""
-    };
-  }
 
   render() {
     return (
@@ -116,10 +103,7 @@ export class Login extends React.Component {
             </form>
           </section>
         ) : (
-          <LoginForm
-            onSubmit={this.submit}
-            initialValues={this.getInitialValues()}
-          />
+          <LoginForm />
         )
         /* (
           <section className="login">

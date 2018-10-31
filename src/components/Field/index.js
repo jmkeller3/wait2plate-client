@@ -1,15 +1,38 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-export const myInput = props => {
-  const { input, type, meta } = props;
-  return (
-    <Fragment>
-      <input
-        {...props.input}
-        type={props.type}
-        placeholder={props.placeholder}
-      />
-      {meta.error && meta.touched && <div>{meta.error}</div>}
-    </Fragment>
-  );
-};
+export default class Input extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.meta.active && this.props.meta.active) {
+      this.input.focus();
+    }
+  }
+  render() {
+    const Element = this.props.element || "input";
+
+    let error;
+    if (this.props.meta.touched && this.props.meta.error) {
+      error = <div className="form-error">{this.props.meta.error}</div>;
+    }
+
+    let warning;
+    if (this.props.meta.touched && this.props.meta.warning) {
+      warning = <div className="form-warning">{this.props.meta.warning}</div>;
+    }
+
+    return (
+      <div className="form-input">
+        <label htmlFor={this.props.input.name}>
+          {this.props.label}
+          {error}
+          {warning}
+        </label>
+        <Element
+          {...this.props.input}
+          id={this.props.input.name}
+          type={this.props.type}
+          ref={input => (this.input = input)}
+        />
+      </div>
+    );
+  }
+}
