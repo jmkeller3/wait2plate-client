@@ -147,6 +147,6 @@ export const loginThunk = (username, pass) => async dispatch => {
 export const signupThunk = (username, email, pass) => async dispatch => {
   dispatch(fetching());
   const JWT = await signup(username, email, pass);
-  dispatch(signup(JWT));
+  dispatch(signupAction(JWT));
   dispatch(fetched());
 };

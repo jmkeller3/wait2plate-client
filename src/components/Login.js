@@ -12,7 +12,8 @@ export class Login extends React.Component {
       tab: "login",
       username: "",
       email: "",
-      pass: ""
+      pass: "",
+      cpass: ""
     };
   }
 
@@ -20,12 +21,14 @@ export class Login extends React.Component {
     e.preventDefault();
     const { username, pass } = this.state;
     this.props.dispatch(loginThunk(username, pass));
+    this.setState({ username: "", pass: "" });
   };
 
   handleSignup = e => {
     e.preventDefault();
     const { username, email, pass } = this.state;
     this.props.dispatch(signupThunk(username, email, pass));
+    this.setState({ username: "", email: "", pass: "", cpass: "" });
   };
 
   render() {
@@ -56,7 +59,7 @@ export class Login extends React.Component {
             </header>
             <form className="signup-form" onSubmit={this.handleSignup}>
               <div>
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <input
                   placeholder="username"
                   type="text"
@@ -69,7 +72,7 @@ export class Login extends React.Component {
                 />
               </div>
               <div>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="text"
                   name="email"
@@ -81,7 +84,7 @@ export class Login extends React.Component {
                 />
               </div>
               <div>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
@@ -93,7 +96,7 @@ export class Login extends React.Component {
                 />
               </div>
               <div>
-                <label for="cpassword">Confirm Password</label>
+                <label htmlFor="cpassword">Confirm Password</label>
                 <input type="password" name="cpassword" id="cpassword" />
               </div>
               <button type="submit">Sign Up</button>
@@ -106,7 +109,7 @@ export class Login extends React.Component {
             </header>
             <form className="login-form" onSubmit={this.handleLogin}>
               <div>
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <input
                   placeholder="username"
                   type="text"
@@ -119,7 +122,7 @@ export class Login extends React.Component {
                 />
               </div>
               <div>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"

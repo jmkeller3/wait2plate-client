@@ -1,16 +1,20 @@
 // Login
 export const login = async (username, pass) => {
-  let users = JSON.parse(localStorage.getItem("users"));
+  try {
+    let users = JSON.parse(localStorage.getItem("users"));
 
-  function authenication(user) {
-    return username === user.username && pass === user.password;
-  }
+    function authenication(user) {
+      return username === user.username && pass === user.password;
+    }
 
-  let user = users.find(authenication);
-  if (user == null) {
-    throw Error(`Bad login request`);
+    let user = users.find(authenication);
+    if (user == null) {
+      throw Error(`Bad login request`);
+    }
+    return user.id;
+  } catch (error) {
+    console.error(error);
   }
-  return user.id;
 };
 
 // Sign-Up
