@@ -5,6 +5,8 @@ import { loginThunk, signupThunk } from "../actions";
 import "./Login.css";
 import LoginForm from "./LoginForm";
 
+import SignupForm from "./SignupForm";
+
 export class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -52,95 +54,7 @@ export class Login extends React.Component {
             Sign-Up
           </button>
         </div>
-        {this.state.tab !== "login" ? (
-          <section className="signup">
-            <header>
-              <h3>Sign up</h3>
-            </header>
-            <form className="signup-form" onSubmit={this.handleSignup}>
-              <div>
-                <label htmlFor="username">Username</label>
-                <input
-                  placeholder="username"
-                  type="text"
-                  name="username"
-                  id="username"
-                  value={this.state.username}
-                  onChange={e => {
-                    this.setState({ username: e.target.value });
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  value={this.state.email}
-                  onChange={e => {
-                    this.setState({ email: e.target.value });
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={this.state.pass}
-                  onChange={e => {
-                    this.setState({ pass: e.target.value });
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="cpassword">Confirm Password</label>
-                <input type="password" name="cpassword" id="cpassword" />
-              </div>
-              <button type="submit">Sign Up</button>
-            </form>
-          </section>
-        ) : (
-          <LoginForm />
-        )
-        /* (
-          <section className="login">
-            <header>
-              <h3>Login</h3>
-            </header>
-            <form className="login-form" onSubmit={this.handleLogin}>
-              <div>
-                <label htmlFor="username">Username</label>
-                <input
-                  placeholder="username"
-                  type="text"
-                  name="username"
-                  id="username"
-                  value={this.state.username}
-                  onChange={e => {
-                    this.setState({ username: e.target.value });
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={this.state.pass}
-                  onChange={e => {
-                    this.setState({ pass: e.target.value });
-                  }}
-                />
-              </div>
-              <button type="submit">Login</button>
-            </form>
-          </section>
-        ) */
-        }
+        {this.state.tab !== "login" ? <SignupForm /> : <LoginForm />}
       </div>
     );
   }

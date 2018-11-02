@@ -1,18 +1,26 @@
 import React from "react";
-import { reduxForm, Field, focus } from "redux-form";
+import { reduxForm, Field } from "redux-form";
 
-import submit from "./LoginSubmit";
+import submit from "./SignupSubmit";
+
+import { isValidEmail } from "sane-email-validation";
 
 const validate = values => {
   const errors = {};
   if (!values.username) {
     errors.username = "*Required*";
   }
-
+  if (!values.email) {
+    errors.email = "*Required*";
+  } else if (!isValidEmail) {
+    errors.email = "*Invalid Email*";
+  }
   if (!values.password) {
     errors.password = "*Required*";
   }
-
+  if (!values.cpassword) {
+    errors.cpassword = "*Required*";
+  }
   return errors;
 };
 
@@ -38,12 +46,22 @@ let SignupForm = ({ handleSubmit, submitting }) => (
         component={renderInput}
       />
     </div>
-
+    <div>
+      <Field name="email" type="email" label="Email" component={renderInput} />
+    </div>
     <div>
       <Field
         name="password"
         type="password"
         label="Password"
+        component={renderInput}
+      />
+    </div>
+    <div>
+      <Field
+        name="cpassword"
+        type="password"
+        label="Confirm Password"
         component={renderInput}
       />
     </div>

@@ -23,3 +23,26 @@ button {
 section {
   margin: 10px;
 }
+
+.error span {
+  color: #ff0000;
+}
+
+.active input {
+  outline: 2px solid #ff0000;
+}
+
+button {
+  background-color: #b10b0b;
+  border: 1px solid #000;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover,
+button:focus {
+  background-color: #790202;
+}
