@@ -1,7 +1,8 @@
-.login {
+.login,
+.signup {
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid #000;
+  border: 0;
 }
 
 input,
@@ -22,4 +23,34 @@ button {
 
 section {
   margin: 10px;
+}
+
+button {
+  background-color: #b10b0b;
+  border: 1px solid #000;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover,
+button:focus {
+  background-color: #790202;
+}
+
+.btn-tab {
+  margin: 10px;
+  background-color: #b60606;
+  color: #fff;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.signup,
+.login {
+  margin-top: 0;
 }

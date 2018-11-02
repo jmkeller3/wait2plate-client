@@ -39,6 +39,7 @@ export class Login extends React.Component {
       this.setState({ error: null });
       await this.props.dispatch(signupThunk(username, email, pass));
       this.setState({ username: "", email: "", pass: "", cpass: "" });
+      this.props.history.push(`/restaurants`);
     } catch (error) {
       this.setState({ error: error.message });
     }
