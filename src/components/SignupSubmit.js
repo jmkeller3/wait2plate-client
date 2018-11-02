@@ -1,28 +1,21 @@
 import { SubmissionError } from "redux-form";
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 function submit(values) {
-  return sleep(1000).then(() => {
+  return async () => {
     // simulate server latency
     const data = localStorage.getItem("users");
     const usernames = data.map(datum => {
       return datum.username;
     });
-    if (!usernames.includes(values.username)) {
+    if (usernames.includes(values.username)) {
       throw new SubmissionError({
-        username: "User does not exist",
-        _error: "Login failed!"
-      });
-    } else if (values.password !== "redux-form") {
-      throw new SubmissionError({
-        password: "Wrong password",
+        username: "User already exist",
         _error: "Login failed!"
       });
     } else {
       window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
     }
-  });
+  };
 }
 
 export default submit;

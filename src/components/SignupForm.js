@@ -2,8 +2,7 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import Input from "./Field";
 import submit from "./SignupSubmit";
-
-import { isValidEmail } from "sane-email-validation";
+import isValidEmail from "sane-email-validation";
 
 const validate = values => {
   const errors = {};
@@ -12,7 +11,7 @@ const validate = values => {
   }
   if (!values.email) {
     errors.email = "*Required*";
-  } else if (!isValidEmail) {
+  } else if (!isValidEmail(values.email)) {
     errors.email = "*Invalid Email*";
   }
   if (!values.password) {
@@ -24,7 +23,7 @@ const validate = values => {
   return errors;
 };
 
-let SignupForm = ({ handleSubmit, submitting }) => (
+let SignupForm = ({ handleSubmit, submitting, error }) => (
   <form onSubmit={handleSubmit(submit)}>
     <div>
       <Field name="username" type="text" label="Username" component={Input} />
@@ -40,6 +39,7 @@ let SignupForm = ({ handleSubmit, submitting }) => (
         component={Input}
       />
     </div>
+    {error !== null && <div>{error}</div>}
     <div>
       <Field
         name="cpassword"
