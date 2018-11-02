@@ -1,5 +1,6 @@
 import React from "react";
 import { reduxForm, Field, focus } from "redux-form";
+import Input from "./Field";
 
 import submit from "./LoginSubmit";
 
@@ -16,27 +17,10 @@ const validate = values => {
   return errors;
 };
 
-const renderInput = ({ input, type, meta, label }) => (
-  <div
-    className={[
-      meta.error && meta.touched ? "error" : "",
-      meta.active ? "active" : ""
-    ].join(" ")}
-  >
-    <label>{label}</label>
-    <input {...input} type={type} placeholder={label} />
-    {meta.error && meta.touched && <span>{meta.error}</span>}
-  </div>
-);
-let SignupForm = ({ handleSubmit, submitting }) => (
+let LoginForm = ({ handleSubmit, submitting }) => (
   <form onSubmit={handleSubmit(submit)}>
     <div>
-      <Field
-        name="username"
-        type="text"
-        label="Username"
-        component={renderInput}
-      />
+      <Field name="username" type="text" label="Username" component={Input} />
     </div>
 
     <div>
@@ -44,7 +28,7 @@ let SignupForm = ({ handleSubmit, submitting }) => (
         name="password"
         type="password"
         label="Password"
-        component={renderInput}
+        component={Input}
       />
     </div>
     <button type="submit" disable={submitting}>
@@ -53,8 +37,10 @@ let SignupForm = ({ handleSubmit, submitting }) => (
   </form>
 );
 
-SignupForm = reduxForm({
-  form: "signup",
-  validate
-})(SignupForm);
-export default SignupForm;
+LoginForm = reduxForm({
+  form: "login",
+  validate,
+  onSubmitFail: (errors, dispatch) =>
+    dispatch(focus("login", Object.keys(errors)[0]))
+})(LoginForm);
+export default LoginForm;

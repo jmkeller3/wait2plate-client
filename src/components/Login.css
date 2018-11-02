@@ -46,3 +46,24 @@ button:hover,
 button:focus {
   background-color: #790202;
 }
+
+.message {
+  padding: 12px 6px;
+}
+
+.message-success {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.message-error,
+.form-error {
+  background-color: #d9534f;
+  color: white;
+}
+
+.form-error {
+  margin: 0 6px;
+  padding: 6px;
+  display: inline-block;
+}
