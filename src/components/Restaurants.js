@@ -1,13 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import {
-  FIND_RESTAURANTS,
-  FETCHED,
-  FETCHED_HAS_ERROR,
-  IS_FETCHING
-} from "../actions";
-
 export class Restaurants extends React.Component {
   constructor(props) {
     super(props);
@@ -76,8 +69,6 @@ export class Restaurants extends React.Component {
   }
 }
 
-const mapStatetoProps = state => ({
-  restaurants: state.restaurants
-});
+const mapStateToProps = state => ({ restaurants: state.restaurants });
 
-export default connect(mapStatetoProps)(Restaurants);
+export default connect(mapStateToProps)(Restaurants);

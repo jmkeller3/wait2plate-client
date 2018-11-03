@@ -191,7 +191,7 @@ export default (state = initialState, action) => {
     case actions.FETCHED_HAS_ERROR:
       return {
         ...state,
-        error: action.error,
+        error: action.error.message,
         fetching: false
       };
 

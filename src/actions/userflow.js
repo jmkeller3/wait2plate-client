@@ -10,6 +10,7 @@ export const login = async (username, pass) => {
   if (user == null) {
     throw Error(`Bad login request`);
   }
+
   return user.id;
 };
 

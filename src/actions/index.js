@@ -139,9 +139,13 @@ export const deleteTimeThunk = reportId => async (dispatch, getState) => {
 
 export const loginThunk = (username, pass) => async dispatch => {
   dispatch(fetching());
-  const JWT = await login(username, pass);
-  dispatch(loginAction(JWT));
-  dispatch(fetched());
+  try {
+    const JWT = await login(username, pass);
+    dispatch(loginAction(JWT));
+    dispatch(fetched());
+  } catch (error) {
+    dispatch(fetchedHasError(error));
+  }
 };
 
 export const signupThunk = (username, email, pass) => async dispatch => {

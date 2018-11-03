@@ -26,7 +26,7 @@ export class Login extends React.Component {
       this.setState({ error: null });
       await this.props.dispatch(loginThunk(username, pass));
       this.setState({ username: "", pass: "" });
-      this.props.history.push(`/restaurants`);
+      this.props.history.push(`/timer`);
     } catch (error) {
       this.setState({ error: error.message });
     }
@@ -39,13 +39,14 @@ export class Login extends React.Component {
       this.setState({ error: null });
       await this.props.dispatch(signupThunk(username, email, pass));
       this.setState({ username: "", email: "", pass: "", cpass: "" });
-      this.props.history.push(`/restaurants`);
+      this.props.history.push(`/timer`);
     } catch (error) {
       this.setState({ error: error.message });
     }
   };
 
   render() {
+    console.log(this.props.fetched);
     return (
       <div>
         <header role="banner">
@@ -188,4 +189,4 @@ function mapStateToProps(state) {
 }
 
 const LoginWithRouter = withRouter(Login);
-export default connect()(LoginWithRouter);
+export default connect(mapStateToProps)(LoginWithRouter);
