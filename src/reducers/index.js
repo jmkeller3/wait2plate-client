@@ -164,6 +164,9 @@ export default (state = initialState, action) => {
     case actions.ADD_POINT:
       return { ...state, points: action.points };
 
+    case actions.CLEAR_ERROR:
+      return { ...state, error: null };
+
     case actions.DELETE_TIME_ACTION:
       return {
         ...state,

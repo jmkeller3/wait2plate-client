@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import { withRouter, Redirect } from "react-router";
 
-import { loginThunk, signupThunk } from "../actions";
+import { loginThunk, signupThunk, CLEAR_ERROR } from "../actions";
 
 import "./Login.css";
 
@@ -15,7 +15,7 @@ export class Login extends React.Component {
       email: "",
       pass: "",
       cpass: "",
-      error: null
+      toRestaruants: false
     };
   }
 
@@ -23,10 +23,8 @@ export class Login extends React.Component {
     e.preventDefault();
     const { username, pass } = this.state;
     try {
-      this.setState({ error: null });
       await this.props.dispatch(loginThunk(username, pass));
-      this.setState({ username: "", pass: "" });
-      this.props.history.push(`/timer`);
+      this.setState({ username: "", pass: "", toRestaruants: true });
     } catch (error) {
       this.setState({ error: error.message });
     }
@@ -36,17 +34,24 @@ export class Login extends React.Component {
     e.preventDefault();
     const { username, email, pass } = this.state;
     try {
-      this.setState({ error: null });
       await this.props.dispatch(signupThunk(username, email, pass));
-      this.setState({ username: "", email: "", pass: "", cpass: "" });
-      this.props.history.push(`/timer`);
+      this.setState({
+        username: "",
+        email: "",
+        pass: "",
+        cpass: "",
+        toRestaruants: true
+      });
+      // this.props.history.push(`/restaurants`);
     } catch (error) {
       this.setState({ error: error.message });
     }
   };
 
   render() {
-    console.log(this.props.fetched);
+    if (this.props.error === null && this.state.toRestaruants === true) {
+      return <Redirect to="/restaurants" />;
+    }
     return (
       <div>
         <header role="banner">
@@ -71,8 +76,8 @@ export class Login extends React.Component {
           <section className="signup">
             <header>
               <h3>Sign up</h3>
-              {this.state.error !== null && (
-                <h4 className="error">{this.state.error} </h4>
+              {this.props.error !== null && (
+                <h4 className="error">{this.props.error} </h4>
               )}
             </header>
             <form className="signup-form" onSubmit={this.handleSignup}>
@@ -94,7 +99,7 @@ export class Login extends React.Component {
                 <label htmlFor="email">Email</label>
                 <input
                   required
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="Wait2Plate@food.com"
                   id="email"
@@ -138,8 +143,8 @@ export class Login extends React.Component {
           <section className="login">
             <header>
               <h3>Login</h3>
-              {this.state.error !== null && (
-                <h4 className="error">{this.state.error} </h4>
+              {this.props.error !== null && (
+                <h4 className="error">{this.props.error} </h4>
               )}
             </header>
             <form className="login-form" onSubmit={this.handleLogin}>
