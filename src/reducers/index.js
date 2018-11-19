@@ -159,7 +159,7 @@ const initialState = {
 // }]
 // }]
 
-export default (state = initialState, action) => {
+export const wait2plateReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_POINT:
       return { ...state, points: action.points };
