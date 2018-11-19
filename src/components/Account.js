@@ -7,6 +7,10 @@ import Table from "./Table";
 import { accountUserThunk } from "../actions";
 
 export class Account extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     this.props.dispatch(accountUserThunk());
   }

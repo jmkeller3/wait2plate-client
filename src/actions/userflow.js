@@ -42,7 +42,7 @@ export const signup = async (username, email, pass) => {
 };
 
 // Search Restaurants
-// Send to server: geolocation || search value
+// Send to server: geolocation || search value (city)
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
 export const searchRestaurants = async ({ geolocation, cityState, JWT }) => {
