@@ -3,51 +3,11 @@ import * as actions from "../actions";
 const initialState = {
   fetching: false,
   fetched: false,
-  users: [
-    {
-      id: 1,
-      username: "test",
-      email: "test@test.com",
-      password: "password123",
-      points: 55,
-      reports: []
-    }
-  ],
+  users: [],
   token: "",
-  reports: [
-    {
-      id: 100,
-      user_id: 1,
-      restaurantId: 1000,
-      restaurantName: "Dave's Cafe",
-      time: 525000,
-      date: "October 2, 2018"
-    }
-  ],
-  points: [],
-  restaurants: [
-    {
-      id: 101,
-      name: "Bill Bob's Burgers",
-      address: "123 Main St. Lehi, UT 84043",
-      distance: "1.4 mi",
-      reported_times: [392000, 420000, 498000]
-    },
-    {
-      id: 102,
-      name: "Grace's Bakery",
-      address: "3 Main St. Lehi, UT 84043",
-      distance: "2.4 mi",
-      reported_times: [465000, 594000]
-    },
-    {
-      id: 103,
-      name: "Stevo's Bar and Grill",
-      address: "100 Center St. Lehi, UT 84043",
-      distance: "0.5 mi",
-      reported_times: [780000]
-    }
-  ],
+  reports: [],
+  points: 0,
+  restaurants: [],
   error: null
 };
 
@@ -152,17 +112,17 @@ const initialState = {
 //  password: 'password123',
 //  points: 7,
 //  reports: [{
-//    id: 102,
-//    restaurantId: 1002,
-//    time: 1128000,
-//    date: 'October 4, 2018'
+//  id: 102,
+//  restaurantId: 1002,
+//  time: 1128000,
+//  date: 'October 4, 2018'
 // }]
 // }]
 
 export const wait2plateReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_POINT:
-      return { ...state, points: action.points };
+      return { ...state, points: action.points + 1 };
 
     case actions.CLEAR_ERROR:
       return { ...state, error: null };
@@ -198,8 +158,8 @@ export const wait2plateReducer = (state = initialState, action) => {
         fetching: false
       };
 
-    // case actions.FIND_RESTAURANTS:
-    //   return { ...state, restaurants: action.restaurants };
+    case actions.FIND_RESTAURANTS:
+      return { ...state, restaurants: action.restaurants };
 
     case actions.GET_USERS:
       return {
