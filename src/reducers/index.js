@@ -158,8 +158,8 @@ export const wait2plateReducer = (state = initialState, action) => {
         fetching: false
       };
 
-    case actions.FIND_RESTAURANTS:
-      return { ...state, restaurants: action.restaurants };
+    // case actions.FIND_RESTAURANTS:
+    //   return { ...state, restaurants: action.restaurants };
 
     case actions.GET_USERS:
       return {
