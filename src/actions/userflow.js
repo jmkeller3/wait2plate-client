@@ -46,9 +46,7 @@ export const signup = async (username, email, pass) => {
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
 export const searchRestaurants = async ({ geolocation, cityState, JWT }) => {
-  let restaurants = JSON.parse(localStorage.getItem("restaurants"));
-
-  let location = geolocation || cityState;
+  const restaurants = await fetch(`${API_BASE_URL}/api/restaurants`);
 
   return restaurants;
 };
