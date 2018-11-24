@@ -2,45 +2,36 @@ const { REACT_APP_API_BASE_URL } = process.env;
 
 // Login
 export const login = async (username, pass) => {
-  let users = JSON.parse(localStorage.getItem("users"));
+  const user = {
+    username,
+    pass
+  };
 
-  function authenication(user) {
-    return username === user.username && pass === user.password;
-  }
+  const JWT = await fetch(`${REACT_APP_API_BASE_URL}/api/auth/login`, {
+    method: "POST",
+    mode: "cors",
+    body: user
+  });
 
-  let user = users.find(authenication);
-  if (user == null) {
-    throw Error(`Bad login request`);
-  }
-
-  return user.id;
+  return JWT;
 };
 
 // Sign-Up
 // Send to server: Username, Email, Password
 // Get from server: JWT
 export const signup = async (username, email, pass) => {
-  let users = JSON.parse(localStorage.getItem("users"));
-  //   Add users in local storage as an empty JSON array
-
-  if (users.some(user => user.username === username)) {
-    throw Error(`Username already taken`);
-  }
-
-  let newUser = {
+  const user = {
     username,
     email,
-    password: pass,
-    id: Math.random() + 1
+    pass
   };
+  const JWT = await fetch(`${REACT_APP_API_BASE_URL}/api/auth/signup`, {
+    method: "POST",
+    mode: "cors",
+    body: user
+  });
 
-  users.push(newUser);
-
-  localStorage.setItem("users", JSON.stringify(users));
-
-  return newUser.id;
-
-  //   localStorage.setItem("token", newUser.id);
+  return JWT;
 };
 
 // Search Restaurants
@@ -48,7 +39,16 @@ export const signup = async (username, email, pass) => {
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
 export const searchRestaurants = async ({ geolocation, cityState, JWT }) => {
-  const restaurants = await fetch(`${REACT_APP_API_BASE_URL}/api/restaurants`);
+  // POST FETCH REQUEST
+  const location = {
+    geolocation,
+    cityState
+  };
+  const restaurants = await fetch(`${REACT_APP_API_BASE_URL}/api/restaurants`, {
+    method: "POST",
+    //headers: JWT,
+    body: location
+  });
 
   return restaurants;
 };
