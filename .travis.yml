@@ -10,5 +10,3 @@ deploy:
   app: guarded-thicket-83395
   env:
     - PORT = 8000
-  on:
-    repo: jmkeller3/wait2plate-client
