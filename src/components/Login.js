@@ -23,7 +23,7 @@ export class Login extends React.Component {
     e.preventDefault();
     const { username, pass } = this.state;
     try {
-      await this.props.dispatch(loginThunk(username, pass));
+      await this.props.loginThunk(username, pass);
       this.setState({ username: "", pass: "", toRestaruants: true });
     } catch (error) {
       this.setState({ error: error.message });
@@ -34,7 +34,7 @@ export class Login extends React.Component {
     e.preventDefault();
     const { username, email, pass } = this.state;
     try {
-      await this.props.dispatch(signupThunk(username, email, pass));
+      await this.props.signupThunk(username, email, pass);
       this.setState({
         username: "",
         email: "",
@@ -193,5 +193,13 @@ function mapStateToProps(state) {
   };
 }
 
+const mapDispatchtoProps = {
+  loginThunk,
+  signupThunk
+};
+
 const LoginWithRouter = withRouter(Login);
-export default connect(mapStateToProps)(LoginWithRouter);
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps
+)(LoginWithRouter);

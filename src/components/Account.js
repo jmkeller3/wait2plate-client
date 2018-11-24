@@ -12,7 +12,7 @@ export class Account extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(accountUserThunk());
+    this.props.accountUserThunk();
   }
 
   render() {
@@ -51,4 +51,11 @@ const mapStatetoProps = state => ({
   //.find(user => user.id === state.user_id)
 });
 
-export default connect(mapStatetoProps)(Account);
+const mapDispatchtoProps = {
+  accountUserThunk
+};
+
+export default connect(
+  mapStatetoProps,
+  mapDispatchtoProps
+)(Account);
