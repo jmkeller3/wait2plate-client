@@ -1,3 +1,5 @@
+const { REACT_APP_API_BASE_URL } = process.env;
+
 // Login
 export const login = async (username, pass) => {
   let users = JSON.parse(localStorage.getItem("users"));
@@ -46,7 +48,7 @@ export const signup = async (username, email, pass) => {
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
 export const searchRestaurants = async ({ geolocation, cityState, JWT }) => {
-  const restaurants = await fetch(`${API_BASE_URL}/api/restaurants`);
+  const restaurants = await fetch(`${REACT_APP_API_BASE_URL}/api/restaurants`);
 
   return restaurants;
 };
