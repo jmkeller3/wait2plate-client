@@ -38,17 +38,18 @@ export const signup = async (username, email, pass) => {
 // Send to server: geolocation || search value (city)
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
-export const searchRestaurants = async ({ geolocation, cityState, JWT }) => {
+export const searchRestaurants = async ({ latitude, longituge, cityState }) => {
   // POST FETCH REQUEST
-  const location = {
-    geolocation,
-    cityState
-  };
-  const restaurants = await fetch(`${REACT_APP_API_BASE_URL}/api/restaurants`, {
-    method: "POST",
-    //headers: JWT,
-    body: location
+  const url = new URL(`${REACT_APP_API_BASE_URL}/api/restaurants`);
+  let params;
+  cityState
+    ? (params = { location: cityState })
+    : (params = { latitude, longituge });
+
+  Object.keys(params).forEach((key, value) => {
+    url.searchParams.append(key, value);
   });
+  const restaurants = await fetch(url);
 
   return restaurants;
 };
