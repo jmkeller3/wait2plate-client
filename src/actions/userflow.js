@@ -69,42 +69,25 @@ export const searchRestaurants = async ({ latitude, longituge, cityState }) => {
 // Report Time
 // Send to server: Restaurant id, time, JWT
 // Get from server: Send user's updated points
-export const reportTime = async (restaurantId, time, JWT) => {
-  // const url = new URL(
-  //   `${REACT_APP_API_BASE_URL}/api/restaurants/${restaurantId}`
-  // );
+export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
+  try {
+    const report = await fetch(`${REACT_APP_API_BASE_URL}/api/reports`, {
+      method: "POST",
+      headers: new Headers({
+        Authorization: `Bearer ${JWT}`,
+        "Content-Type": "application/json"
+      }),
+      body: {
+        restaurant_id,
+        restaurant_name,
+        time
+      }
+    });
 
-  let updatedRestaurants = restaurants.map(restaurant => {
-    if (restaurantId === restaurant.id) {
-      restaurant.times.push(time);
-    }
-    return restaurant;
-  });
-
-  let users = JSON.parse(localStorage.getItem("users"));
-
-  function findUser(user) {
-    return user.id === JWT;
+    return report;
+  } catch (err) {
+    console.log(err);
   }
-
-  let userIndex = users.findIndex(findUser);
-
-  let user = users[userIndex];
-
-  user.reports.push({
-    id: Math.random() + 100,
-    restaurantId,
-    time,
-    date: Date.now()
-  });
-  user.points += 1;
-
-  users[userIndex] = user;
-
-  localStorage.setItem("restaurants", JSON.stringify(updatedRestaurants));
-  localStorage.setItem("users", JSON.stringify(users));
-
-  return user.points;
 };
 
 // Get User Reported Times
