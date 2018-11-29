@@ -1,4 +1,4 @@
-const { REACT_APP_API_BASE_URL } = process.env;
+const { API_BASE_URL } = require('../../config')
 
 // Login
 export const login = async (username, pass) => {
@@ -8,7 +8,7 @@ export const login = async (username, pass) => {
       pass
     };
 
-    const JWT = await fetch(`${REACT_APP_API_BASE_URL}/api/auth/login`, {
+    const JWT = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       mode: "cors",
       body: user
