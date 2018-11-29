@@ -1,4 +1,4 @@
-const { API_BASE_URL } = require('../../config')
+const { API_BASE_URL } = require("../config");
 
 // Login
 export const login = async (username, pass) => {
@@ -30,7 +30,7 @@ export const signup = async (username, email, pass) => {
       email,
       pass
     };
-    const JWT = await fetch(`${REACT_APP_API_BASE_URL}/api/auth/signup`, {
+    const JWT = await fetch(`${API_BASE_URL}/api/auth/signup`, {
       method: "POST",
       mode: "cors",
       body: user
@@ -49,7 +49,7 @@ export const signup = async (username, email, pass) => {
 export const searchRestaurants = async ({ latitude, longituge, cityState }) => {
   try {
     // POST FETCH REQUEST
-    const url = new URL(`${REACT_APP_API_BASE_URL}/api/restaurants`);
+    const url = new URL(`${API_BASE_URL}/api/restaurants`);
     let params;
     cityState
       ? (params = { location: cityState })
@@ -71,7 +71,7 @@ export const searchRestaurants = async ({ latitude, longituge, cityState }) => {
 // Get from server: Send user's updated points
 export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
   try {
-    const report = await fetch(`${REACT_APP_API_BASE_URL}/api/reports`, {
+    const report = await fetch(`${API_BASE_URL}/api/reports`, {
       method: "POST",
       headers: new Headers({
         Authorization: `Bearer ${JWT}`,
@@ -95,7 +95,7 @@ export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
 // Get from server: User's report times (Restaurant name, time reported (id and the date), user's points)
 export const accountUser = async (JWT, user_id) => {
   try {
-    let user = await fetch(`${REACT_APP_API_BASE_URL}/api/users/${user_id}`, {
+    let user = await fetch(`${API_BASE_URL}/api/users/${user_id}`, {
       method: "GET",
       headers: new Headers({
         Authorization: `Bearer ${JWT}`,
@@ -104,7 +104,7 @@ export const accountUser = async (JWT, user_id) => {
     });
 
     let reports = user.reports.map(report => {
-      fetch(`{REACT_APP_API_BASE_URL}/api/reports/${report}`);
+      fetch(`{API_BASE_URL}/api/reports/${report}`);
     });
 
     return {
@@ -121,7 +121,7 @@ export const accountUser = async (JWT, user_id) => {
 // Get from server: new time
 export const editTime = async (JWT, reportId, newTime) => {
   try {
-    fetch(`${REACT_APP_API_BASE_URL}/api/reports/${reportId}`, {
+    fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
       method: "PUT",
       headers: new Headers({
         Authorization: `Bearer ${JWT}`,
@@ -141,7 +141,7 @@ export const editTime = async (JWT, reportId, newTime) => {
 // Get from server: deletion
 export const deleteTime = async (JWT, reportId) => {
   try {
-    fetch(`${REACT_APP_API_BASE_URL}/api/reports/${reportId}`, {
+    fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
       method: "DELETE",
       headers: new Headers({
         Authorization: `Bearer ${JWT}`,
@@ -157,7 +157,7 @@ export const deleteTime = async (JWT, reportId) => {
 // Get Users
 export const getAllUsers = async JWT => {
   try {
-    let users = await fetch(`${REACT_APP_API_BASE_URL}/api/users`);
+    let users = await fetch(`${API_BASE_URL}/api/users`);
 
     return users;
   } catch (err) {
