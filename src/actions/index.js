@@ -94,13 +94,17 @@ export const getUsersThunk = () => async (dispatch, getState) => {
   dispatch(fetched());
 };
 
-export const getRestaurantsThunk = (geolocation, cityState) => async (
+export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   dispatch,
   getState
 ) => {
   dispatch(fetching());
   const JWT = getState().token;
-  const restaurants = await searchRestaurants({ geolocation, cityState, JWT });
+  const restaurants = await searchRestaurants({
+    cityState,
+    latitude,
+    longitude
+  });
   dispatch(findRestaurants(restaurants));
   dispatch(fetched());
 };

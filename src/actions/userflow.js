@@ -30,7 +30,7 @@ export const signup = async (username, email, pass) => {
       email,
       pass
     };
-    const JWT = await fetch(`${API_BASE_URL}/api/auth/signup`, {
+    const JWT = await fetch(`${API_BASE_URL}/api/users/`, {
       method: "POST",
       mode: "cors",
       body: user
@@ -46,21 +46,27 @@ export const signup = async (username, email, pass) => {
 // Send to server: geolocation || search value (city)
 // Get from server: Restaurant Data from Yelp (name, address, distance) & Time data from server (average wait time)
 // Report time button
-export const searchRestaurants = async ({ latitude, longituge, cityState }) => {
+export const searchRestaurants = async ({ cityState, latitude, longitude }) => {
   try {
     // POST FETCH REQUEST
-    const url = new URL(`${API_BASE_URL}/api/restaurants`);
-    let params;
-    cityState
-      ? (params = { location: cityState })
-      : (params = { latitude, longituge });
 
-    Object.keys(params).forEach((key, value) => {
-      url.searchParams.append(key, value);
+    let location = cityState;
+
+    // Object.keys(params).forEach((key, value) => {
+    //   url.searchParams.append(key, value);
+    // });
+
+    let url = new URL(`${API_BASE_URL}/api/restaurants/`);
+    const params = { latitude, longitude };
+    url.search = new URLSearchParams(params);
+    fetch(url).then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      const restaurants = res.json();
+      console.log(res);
+      return restaurants;
     });
-    const restaurants = await fetch(url);
-
-    return restaurants;
   } catch (err) {
     console.log(err);
   }

@@ -7,7 +7,15 @@ const initialState = {
   token: "",
   reports: [],
   points: 0,
-  restaurants: [],
+  restaurants: [
+    {
+      id: 101,
+      name: "Bill Bob's Burgers",
+      address: "123 Main St. Lehi, UT 84043",
+      distance: "1.4 mi",
+      reported_times: [392000, 420000, 498000]
+    }
+  ],
   error: null
 };
 
@@ -158,8 +166,8 @@ export const wait2plateReducer = (state = initialState, action) => {
         fetching: false
       };
 
-    // case actions.FIND_RESTAURANTS:
-    //   return { ...state, restaurants: action.restaurants };
+    case actions.FIND_RESTAURANTS:
+      return { ...state, restaurants: action.restaurants };
 
     case actions.GET_USERS:
       return {
