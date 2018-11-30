@@ -109,13 +109,13 @@ export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   dispatch(fetched());
 };
 
-export const reportTimeThunk = (time, restaurant) => async (
+export const reportTimeThunk = (time, restaurant_id, restaurant_name) => async (
   dispatch,
   getState
 ) => {
   dispatch(fetching());
   const JWT = getState().token;
-  const points = await reportTime(restaurant, time, JWT);
+  const points = await reportTime(restaurant_id, restaurant_name, time, JWT);
   dispatch(addPoint(points));
   dispatch(fetched());
 };

@@ -17,11 +17,24 @@ export class Restaurants extends React.Component {
   }
 
   render() {
-    // function millisToMinutesAndSeconds(millis) {
-    //   const minutes = Math.floor(millis / 60000);
-    //   const seconds = ((millis % 60000) / 1000).toFixed(0);
-    //   return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-    // }
+    function millisToMinutesAndSeconds(millis) {
+      const minutes = Math.floor(millis / 60000);
+      const seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
+    function metersToMiles(meters) {
+      const distance = meters / 1609.344;
+      return `${distance.toFixed(2)} Miles`;
+    }
+
+    function averageTimes(times) {
+      return (
+        times.reduce(function(a, b) {
+          return a + b;
+        }) / times.length
+      );
+    }
 
     // const restaurantData = this.props.restaurants.map(restaurant => {
     //   function average(times) {
@@ -35,18 +48,22 @@ export class Restaurants extends React.Component {
 
     //   let times = millisToMinutesAndSeconds(average_time);
 
-    //   return (
-    //     <tr key={restaurant.id}>
-    //       <td>{restaurant.name}</td>
-    //       <td>{restaurant.address}</td>
-    //       <td>{restaurant.distance}</td>
-    //       <td>{times}</td>
-    //       <td>
-    //         <button onClick={e => this.goToTimer(e)}>Report</button>
-    //       </td>
-    //     </tr>
+    //
     //   );
     // });
+    const restaurants = this.props.restaurants.map(restaurant => {
+      return (
+        <tr key={restaurant.id}>
+          <td>{restaurant.name}</td>
+          <td>{restaurant.display_address}</td>
+          <td>{metersToMiles(restaurant.distance)}</td>
+          <td>{restaurant.reported_times}</td>
+          <td>
+            <button onClick={e => this.goToTimer(e)}>Report</button>
+          </td>
+        </tr>
+      );
+    });
 
     return (
       <main role="main">
@@ -66,8 +83,9 @@ export class Restaurants extends React.Component {
                 <th>Report Time</th>
               </tr>
             </thead>
-            {/* <tbody>{restaurantData}</tbody> */}
+            <tbody>{restaurants}</tbody>
           </table>
+          {/* <ul>{restaurants}</ul> */}
         </section>
       </main>
     );
