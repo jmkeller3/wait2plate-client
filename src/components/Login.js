@@ -24,7 +24,7 @@ export class Login extends React.Component {
     const { username, pass } = this.state;
     try {
       await this.props.loginThunk(username, pass);
-      this.setState({ username: "", pass: "", toRestaruants: true });
+      this.setState({ username: "", pass: "", toRestaruants: false });
     } catch (error) {
       this.setState({ error: error.message });
     }

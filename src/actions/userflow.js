@@ -10,7 +10,8 @@ export const login = async (username, pass) => {
 
     const JWT = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
-      mode: "cors",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
       body: user
     });
 
@@ -33,7 +34,8 @@ export const signup = async (username, email, pass) => {
     const JWT = await fetch(`${API_BASE_URL}/api/users/`, {
       method: "POST",
       mode: "cors",
-      body: user
+      headers: { "Content-Type": "application/json" },
+      body: JSON.parse(user)
     });
 
     return JWT;
@@ -59,14 +61,8 @@ export const searchRestaurants = async ({ cityState, latitude, longitude }) => {
     let url = new URL(`${API_BASE_URL}/api/restaurants/`);
     const params = { latitude, longitude };
     url.search = new URLSearchParams(params);
-    fetch(url).then(res => {
-      if (!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      const restaurants = res.json();
-      console.log(res);
-      return restaurants;
-    });
+    let restaurants = await fetch(url);
+    return restaurants.json();
   } catch (err) {
     console.log(err);
   }
