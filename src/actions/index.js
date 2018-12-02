@@ -150,8 +150,8 @@ export const loginThunk = (username, pass) => async dispatch => {
   dispatch(clearError());
   dispatch(fetching());
   try {
-    const JWT = await login(username, pass);
-    dispatch(loginAction(JWT));
+    const user = await login(username, pass);
+    dispatch(loginAction(user));
     dispatch(fetched());
   } catch (error) {
     dispatch(fetchedHasError(error));
@@ -162,8 +162,8 @@ export const signupThunk = (username, email, pass) => async dispatch => {
   dispatch(clearError());
   dispatch(fetching());
   try {
-    const JWT = await signup(username, email, pass);
-    dispatch(signupAction(JWT));
+    const user = await signup(username, email, pass);
+    dispatch(signupAction(user));
     dispatch(fetched());
   } catch (error) {
     dispatch(fetchedHasError(error));

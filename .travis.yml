@@ -10,4 +10,3 @@ deploy:
   app: guarded-thicket-83395
   on:
     repo: jmkeller3/wait2plate-client
-    branch: testing_forms

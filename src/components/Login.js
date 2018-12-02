@@ -6,9 +6,6 @@ import { withRouter, Redirect } from "react-router";
 import { loginThunk, signupThunk, clearError } from "../actions";
 
 import "./Login.css";
-import LoginForm from "./LoginForm";
-
-import SignupForm from "./SignupForm";
 
 export class Login extends React.Component {
   constructor(props) {
