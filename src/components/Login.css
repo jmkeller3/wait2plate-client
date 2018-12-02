@@ -25,6 +25,10 @@ section {
   margin: 10px;
 }
 
+.active input {
+  outline: 2px solid #ff0000;
+}
+
 button {
   background-color: #b10b0b;
   border: 1px solid #000;
@@ -40,6 +44,7 @@ button:focus {
   background-color: #790202;
 }
 
+
 .btn-tab {
   margin: 10px;
   background-color: #b60606;
@@ -53,4 +58,25 @@ button:focus {
 .signup,
 .login {
   margin-top: 0;
+}
+
+.message {
+  padding: 12px 6px;
+}
+
+.message-success {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.message-error,
+.form-error {
+  background-color: #d9534f;
+  color: white;
+}
+
+.form-error {
+  margin: 0 6px;
+  padding: 6px;
+  display: inline-block;
 }

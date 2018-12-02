@@ -1,10 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { withRouter, Redirect } from "react-router";
 
 import { loginThunk, signupThunk, CLEAR_ERROR } from "../actions";
 
+
+
 import "./Login.css";
+import LoginForm from "./LoginForm";
+
+import SignupForm from "./SignupForm";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -72,6 +78,7 @@ export class Login extends React.Component {
             Sign-Up
           </button>
         </div>
+
         {this.state.tab !== "login" ? (
           <section className="signup">
             <header>
@@ -180,6 +187,7 @@ export class Login extends React.Component {
             </form>
           </section>
         )}
+
       </div>
     );
   }
