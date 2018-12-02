@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { withRouter, Redirect } from "react-router";
 
-import { loginThunk, signupThunk, CLEAR_ERROR } from "../actions";
+import { loginThunk, signupThunk, clearError } from "../actions";
 
 import "./Login.css";
 import LoginForm from "./LoginForm";

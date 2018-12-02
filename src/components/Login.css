@@ -44,7 +44,6 @@ button:focus {
   background-color: #790202;
 }
 
-
 .btn-tab {
   margin: 10px;
   background-color: #b60606;
@@ -79,5 +78,4 @@ button:focus {
   margin: 0 6px;
   padding: 6px;
   display: inline-block;
-
 }
