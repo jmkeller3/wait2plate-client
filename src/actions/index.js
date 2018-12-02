@@ -81,6 +81,11 @@ export const signupAction = JWT => ({
   JWT
 });
 
+export const CLEAR_ERROR = "CLEAR_ERROR";
+export const clearError = () => ({
+  type: CLEAR_ERROR
+});
+
 export const getUsersThunk = () => async (dispatch, getState) => {
   dispatch(fetching());
   const JWT = getState().token;
@@ -89,24 +94,28 @@ export const getUsersThunk = () => async (dispatch, getState) => {
   dispatch(fetched());
 };
 
-export const getRestaurantsThunk = (geolocation, cityState) => async (
+export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   dispatch,
   getState
 ) => {
   dispatch(fetching());
   const JWT = getState().token;
-  const restaurants = await searchRestaurants({ geolocation, cityState, JWT });
+  const restaurants = await searchRestaurants({
+    cityState,
+    latitude,
+    longitude
+  });
   dispatch(findRestaurants(restaurants));
   dispatch(fetched());
 };
 
-export const reportTimeThunk = (time, restaurant) => async (
+export const reportTimeThunk = (time, restaurant_id, restaurant_name) => async (
   dispatch,
   getState
 ) => {
   dispatch(fetching());
   const JWT = getState().token;
-  const points = await reportTime(restaurant, time, JWT);
+  const points = await reportTime(restaurant_id, restaurant_name, time, JWT);
   dispatch(addPoint(points));
   dispatch(fetched());
 };
@@ -138,15 +147,25 @@ export const deleteTimeThunk = reportId => async (dispatch, getState) => {
 };
 
 export const loginThunk = (username, pass) => async dispatch => {
+  dispatch(clearError());
   dispatch(fetching());
-  const JWT = await login(username, pass);
-  dispatch(loginAction(JWT));
-  dispatch(fetched());
+  try {
+    const JWT = await login(username, pass);
+    dispatch(loginAction(JWT));
+    dispatch(fetched());
+  } catch (error) {
+    dispatch(fetchedHasError(error));
+  }
 };
 
 export const signupThunk = (username, email, pass) => async dispatch => {
+  dispatch(clearError());
   dispatch(fetching());
-  const JWT = await signup(username, email, pass);
-  dispatch(signupAction(JWT));
-  dispatch(fetched());
+  try {
+    const JWT = await signup(username, email, pass);
+    dispatch(signupAction(JWT));
+    dispatch(fetched());
+  } catch (error) {
+    dispatch(fetchedHasError(error));
+  }
 };

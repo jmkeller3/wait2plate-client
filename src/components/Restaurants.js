@@ -1,12 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import {
-  FIND_RESTAURANTS,
-  FETCHED,
-  FETCHED_HAS_ERROR,
-  IS_FETCHING
-} from "../actions";
+import { getRestaurantsThunk } from "../actions";
 
 export class Restaurants extends React.Component {
   constructor(props) {
@@ -18,6 +12,10 @@ export class Restaurants extends React.Component {
     this.props.history.push(`/timer`);
   }
 
+  componentDidMount() {
+    this.props.getRestaurantsThunk("Lehi,UT", 40.4173276, -111.87851189999999);
+  }
+
   render() {
     function millisToMinutesAndSeconds(millis) {
       const minutes = Math.floor(millis / 60000);
@@ -25,24 +23,41 @@ export class Restaurants extends React.Component {
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
-    const restaurantData = this.props.restaurants.map(restaurant => {
-      function average(times) {
-        return (
-          times.reduce(function(a, b) {
-            return a + b;
-          }) / times.length
-        );
-      }
-      let average_time = average(restaurant.reported_times);
+    function metersToMiles(meters) {
+      const distance = meters / 1609.344;
+      return `${distance.toFixed(2)} Miles`;
+    }
 
-      let times = millisToMinutesAndSeconds(average_time);
-
+    function averageTimes(times) {
       return (
-        <tr>
+        times.reduce(function(a, b) {
+          return a + b;
+        }) / times.length
+      );
+    }
+
+    // const restaurantData = this.props.restaurants.map(restaurant => {
+    //   function average(times) {
+    //     return (
+    //       times.reduce(function(a, b) {
+    //         return a + b;
+    //       }) / times.length
+    //     );
+    //   }
+    //   let average_time = average(restaurant.reported_times);
+
+    //   let times = millisToMinutesAndSeconds(average_time);
+
+    //
+    //   );
+    // });
+    const restaurants = this.props.restaurants.map(restaurant => {
+      return (
+        <tr key={restaurant.id}>
           <td>{restaurant.name}</td>
-          <td>{restaurant.address}</td>
-          <td>{restaurant.distance}</td>
-          <td>{times}</td>
+          <td>{restaurant.display_address}</td>
+          <td>{metersToMiles(restaurant.distance)}</td>
+          <td>{restaurant.reported_times}</td>
           <td>
             <button onClick={e => this.goToTimer(e)}>Report</button>
           </td>
@@ -68,16 +83,22 @@ export class Restaurants extends React.Component {
                 <th>Report Time</th>
               </tr>
             </thead>
-            <tbody>{restaurantData}</tbody>
+            <tbody>{restaurants}</tbody>
           </table>
+          {/* <ul>{restaurants}</ul> */}
         </section>
       </main>
     );
   }
 }
 
-const mapStatetoProps = state => ({
-  restaurants: state.restaurants
-});
+const mapStateToProps = state => ({ restaurants: state.restaurants });
 
-export default connect(mapStatetoProps)(Restaurants);
+const mapDispatchtoProps = {
+  getRestaurantsThunk
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps
+)(Restaurants);
