@@ -3,19 +3,18 @@ const { API_BASE_URL } = require("../config");
 // Login
 export const login = async (username, pass) => {
   const user = {
-    "username": `${username}`,
-    "pass": `${pass}`
+    username,
+    password: pass
   };
 
   try {
     const JWT = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
-      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: user
-    });
+      body: JSON.stringify(user)
+    }).then(res => res.json())
 
     return JWT;
   } catch (err) {
@@ -31,15 +30,14 @@ export const signup = async (username, email, pass) => {
     const user = {
       username,
       email,
-      pass
+      password: pass
     };
 
     const JWT = await fetch(`${API_BASE_URL}/api/users/`, {
       method: "POST",
-      mode: "cors",
       headers: { "Content-Type": "application/json" },
-      body: user
-    });
+      body: JSON.stringify(user)
+    }).then(res => res.json())
 
     return JWT;
   } catch (err) {
