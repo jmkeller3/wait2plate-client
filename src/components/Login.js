@@ -153,7 +153,7 @@ export class Login extends React.Component {
                   />
                 </div>
               </div>
-              <button type="submit">Sign Up</button>
+              <button className="submit-btn" type="submit">Sign Up</button>
             </form>
           </section>
         ) : (
@@ -201,7 +201,7 @@ export class Login extends React.Component {
                     />
                   </div>
                 </div>
-                <button type="submit">Login</button>
+                <button className="submit-btn" type="submit">Login</button>
               </form>
             </section>
           )}
