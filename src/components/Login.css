@@ -2,7 +2,26 @@
 .signup {
   margin-left: auto;
   margin-right: auto;
+  padding: 10px 0;
   border: 0;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 input,
@@ -11,8 +30,17 @@ label {
   text-align: left;
 }
 
+input {
+  width: 70%;
+}
+
+label {
+  display: inline-block;
+}
+
 form {
-  text-align: center;
+  text-align: left;
+  margin-left: 15%;
 }
 
 button {
@@ -30,18 +58,20 @@ section {
 }
 
 button {
-  background-color: #b10b0b;
+  background-color: #fff;
   border: 1px solid #000;
-  color: #fff;
+  color: #C23333;
   font-size: 16px;
+  font-weight: 600;
   padding: 12px 20px;
-  margin-bottom: 10px;
+  margin: 10px;
   transition: 0.3s ease-in-out;
 }
 
 button:hover,
 button:focus {
   background-color: #790202;
+  color: #fff;
 }
 
 .btn-tab {

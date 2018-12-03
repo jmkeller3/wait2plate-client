@@ -2,9 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { getRestaurantsThunk } from "../actions";
 
+import "./Restaurants.css"
+
 export class Restaurants extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      cityState: ""
+    }
   }
 
   goToTimer(event) {
@@ -30,7 +35,7 @@ export class Restaurants extends React.Component {
 
     function averageTimes(times) {
       return (
-        times.reduce(function(a, b) {
+        times.reduce(function (a, b) {
           return a + b;
         }) / times.length
       );
@@ -72,7 +77,18 @@ export class Restaurants extends React.Component {
         </header>
 
         <section>
-          <h3>List</h3>
+          <h3 className="restaurant-list">List</h3>
+          <label>Search by City</label>
+          <input
+            placeholder="City, State"
+            type="text"
+            name="cityState"
+            id="cityState"
+            value={this.state.cityState}
+            onChange={e => {
+              this.setState({ cityState: e.target.value });
+            }}
+          />
           <table>
             <thead>
               <tr>

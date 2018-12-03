@@ -13,7 +13,6 @@ export const login = async (username, pass) => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
       },
       body: user
     });
