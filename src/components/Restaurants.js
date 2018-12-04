@@ -12,6 +12,17 @@ export class Restaurants extends React.Component {
     }
   }
 
+  handleSearch = async e => {
+    e.preventDefault();
+    const { cityState } = this.state;
+    try {
+      await this.props.getRestaurantsThunk(cityState);
+      this.setState({ cityState: "" });
+    } catch (error) {
+      this.setState({ error: error.message });
+    }
+  };
+
   goToTimer(event) {
     event.preventDefault();
     this.props.history.push(`/timer`);
@@ -77,7 +88,7 @@ export class Restaurants extends React.Component {
         </header>
 
         <section>
-          <h3 className="restaurant-list">List</h3>
+          <h3 className="restaurant-list">Search</h3>
           <label>Search by City</label>
           <input
             placeholder="City, State"
@@ -89,7 +100,9 @@ export class Restaurants extends React.Component {
               this.setState({ cityState: e.target.value });
             }}
           />
-          <table>
+          <button className="search-btn" type="submit" onClick={this.handleSearch}>Search</button>
+          <h3 className="restaurant-list">List</h3>
+          <table className="text-list">
             <thead>
               <tr>
                 <th>Name</th>
