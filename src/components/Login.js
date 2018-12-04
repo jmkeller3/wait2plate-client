@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { withRouter, Redirect } from "react-router";
 
-import { loginThunk, signupThunk, clearError } from "../actions";
+import { loginThunk, signupThunk, setGeolocation } from "../actions";
 
 import "./Login.css";
 
@@ -48,6 +48,15 @@ export class Login extends React.Component {
       this.setState({ error: error.message });
     }
   };
+
+  getGeolocation = async () => {
+    await navigator.geolocation.getCurrentPosition((position) => {
+      this.props.setGeolocation(
+        position.coords.latitude, position.coords.longitude
+      )
+    })
+
+  }
 
   render() {
     if (this.props.error === null && this.state.toRestaruants === true) {
@@ -153,7 +162,7 @@ export class Login extends React.Component {
                   />
                 </div>
               </div>
-              <button className="submit-btn" type="submit">Sign Up</button>
+              <button onClick={this.getGeolocation} className="submit-btn" type="submit">Sign Up</button>
             </form>
           </section>
         ) : (
@@ -201,7 +210,7 @@ export class Login extends React.Component {
                     />
                   </div>
                 </div>
-                <button className="submit-btn" type="submit">Login</button>
+                <button onClick={this.getGeolocation} className="submit-btn" type="submit">Login</button>
               </form>
             </section>
           )}
@@ -220,7 +229,8 @@ function mapStateToProps(state) {
 
 const mapDispatchtoProps = {
   loginThunk,
-  signupThunk
+  signupThunk,
+  setGeolocation
 };
 
 const LoginWithRouter = withRouter(Login);

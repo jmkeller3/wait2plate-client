@@ -51,16 +51,10 @@ export const signup = async (username, email, pass) => {
 // Report time button
 export const searchRestaurants = async ({ cityState, latitude, longitude }) => {
   try {
-    // POST FETCH REQUEST
-
     let location = cityState;
 
-    // Object.keys(params).forEach((key, value) => {
-    //   url.searchParams.append(key, value);
-    // });
-
     let url = new URL(`${API_BASE_URL}/api/restaurants/`);
-    if (location == undefined) {
+    if (location == '') {
       const params = { latitude, longitude };
       url.search = new URLSearchParams(params);
       let restaurants = await fetch(url);

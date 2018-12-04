@@ -29,7 +29,7 @@ export class Restaurants extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getRestaurantsThunk("Lehi,UT", 40.4173276, -111.87851189999999);
+    this.props.getRestaurantsThunk(this.state.cityState, this.props.latitude, this.props.longitude);
   }
 
   render() {
@@ -121,7 +121,11 @@ export class Restaurants extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ restaurants: state.restaurants });
+const mapStateToProps = state => ({
+  restaurants: state.restaurants,
+  latitude: state.latitude,
+  longitude: state.longitude
+});
 
 const mapDispatchtoProps = {
   getRestaurantsThunk

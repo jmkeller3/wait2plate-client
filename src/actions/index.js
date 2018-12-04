@@ -86,6 +86,13 @@ export const clearError = () => ({
   type: CLEAR_ERROR
 });
 
+export const SET_GEOLOCATION = "SET_GEOLOCATION";
+export const setGeolocation = (latitude, longitude) => ({
+  type: SET_GEOLOCATION,
+  latitude,
+  longitude
+})
+
 export const getUsersThunk = () => async (dispatch, getState) => {
   dispatch(fetching());
   const JWT = getState().token;

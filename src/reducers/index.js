@@ -8,6 +8,8 @@ const initialState = {
   reports: [],
   points: 0,
   restaurants: [],
+  latitude: "",
+  longitude: "",
   error: null
 };
 
@@ -67,6 +69,13 @@ export const wait2plateReducer = (state = initialState, action) => {
 
     case actions.LOGIN_ACTION:
       return { ...state, token: action.JWT };
+
+    case actions.SET_GEOLOCATION:
+      return {
+        ...state,
+        latitude: action.latitude,
+        longitude: action.longitude
+      }
 
     case actions.SIGN_UP_ACTION:
       return { ...state, token: action.JWT };
