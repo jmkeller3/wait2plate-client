@@ -54,7 +54,17 @@ export const searchRestaurants = async ({ cityState, latitude, longitude }) => {
     let location = cityState;
 
     let url = new URL(`${API_BASE_URL}/api/restaurants/`);
-    if (location == '') {
+    if
+    (location == '' && latitude == '') {
+      let restaurants = {
+        id: 0,
+        name: '',
+        display_address: '',
+        distance: '',
+        reported_times: ''
+      }
+      return restaurants
+    } else if (location == '') {
       const params = { latitude, longitude };
       url.search = new URLSearchParams(params);
       let restaurants = await fetch(url);
@@ -65,7 +75,6 @@ export const searchRestaurants = async ({ cityState, latitude, longitude }) => {
       let restaurants = await fetch(url);
       return restaurants.json();
     }
-
 
   } catch (err) {
     console.log(err);

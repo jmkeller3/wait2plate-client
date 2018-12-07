@@ -112,7 +112,11 @@ export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
     latitude,
     longitude
   });
-  dispatch(findRestaurants(restaurants));
+  if (restaurants.id !== 0) {
+    dispatch(findRestaurants(restaurants));
+  } else {
+    alert(`Please enter city to search`)
+  }
   dispatch(fetched());
 };
 
