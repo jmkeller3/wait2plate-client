@@ -10,6 +10,10 @@ const initialState = {
   reports: [],
   points: 0,
   restaurants: [],
+  restaurant: {
+    name: '',
+    id: ''
+  },
   latitude: "",
   longitude: "",
   error: null
@@ -56,6 +60,9 @@ export const wait2plateReducer = (state = initialState, action) => {
 
     case actions.FIND_RESTAURANTS:
       return { ...state, restaurants: action.restaurants };
+
+    case actions.SELECT_RESTAURANT:
+      return { ...state, restaurant: { name: action.name, id: action.id } }
 
     case actions.GET_USER:
       return {

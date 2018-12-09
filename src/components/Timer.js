@@ -1,15 +1,18 @@
 import React from "react";
 
 import "./Timer.css";
+import { connect } from "react-redux";
 
 import { addPoint, reportTimeThunk } from "../actions";
 
-export default class Timer extends React.Component {
+export class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       secondsElapsed: 0,
-      lastClearedIncrementer: null
+      lastClearedIncrementer: null,
+      restaurant_name: this.props.restaurant.name,
+      restaurant_id: this.props.restaurant.id
     };
     this.incrementer = null;
 
@@ -31,6 +34,7 @@ export default class Timer extends React.Component {
     this.setState({
       lastClearedIncrementer: this.incrementer
     });
+    addPoint()
   }
 
   getSeconds() {
@@ -74,3 +78,20 @@ export default class Timer extends React.Component {
     );
   }
 }
+
+
+const mapStateToProps = state => ({
+  restaurants: state.restaurants,
+  latitude: state.latitude,
+  longitude: state.longitude
+});
+
+const mapDispatchtoProps = {
+  addPoint,
+  reportTimeThunk
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchtoProps
+)(Timer);

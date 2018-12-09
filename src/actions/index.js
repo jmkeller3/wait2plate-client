@@ -1,5 +1,5 @@
 import {
-  getAllUsers,
+
   searchRestaurants,
   accountUser,
   reportTime,
@@ -93,13 +93,12 @@ export const setGeolocation = (latitude, longitude) => ({
   longitude
 })
 
-export const getUsersThunk = () => async (dispatch, getState) => {
-  dispatch(fetching());
-  const JWT = getState().token.authToken;
-  const user = await getAllUsers(JWT);
-  dispatch(getUser(user));
-  dispatch(fetched());
-};
+export const SELECT_RESTAURANT = "SELECT_RESTAURANT";
+export const selcectRestaurant = (name, id) => ({
+  type: SELECT_RESTAURANT,
+  name,
+  id
+})
 
 export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   dispatch,

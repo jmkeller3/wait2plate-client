@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getRestaurantsThunk } from "../actions";
+import { getRestaurantsThunk, selcectRestaurant } from "../actions";
 
 import "./Restaurants.css"
 
@@ -23,8 +23,9 @@ export class Restaurants extends React.Component {
     }
   };
 
-  goToTimer(event) {
+  goToTimer(event, name, id) {
     event.preventDefault();
+    this.props.selcectRestaurant(name, id)
     this.props.history.push(`/timer`);
   }
 
@@ -75,7 +76,7 @@ export class Restaurants extends React.Component {
           <td>{metersToMiles(restaurant.distance)}</td>
           <td>{restaurant.reported_times}</td>
           <td>
-            <button onClick={e => this.goToTimer(e)}>Report</button>
+            <button onClick={(e) => this.goToTimer(e, restaurant.name, restaurant.id)}>Report</button>
           </td>
         </tr>
       );
@@ -128,7 +129,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchtoProps = {
-  getRestaurantsThunk
+  getRestaurantsThunk,
+  selcectRestaurant
 };
 
 export default connect(
