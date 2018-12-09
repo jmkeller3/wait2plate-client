@@ -67,7 +67,8 @@ export default class Timer extends React.Component {
           </button>
         </section>
         <section>
-          <div className="flip-vertical-right" />
+          <div className="flip-vertical-right logo">
+          </div>
         </section>
       </main>
     );

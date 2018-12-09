@@ -27,27 +27,41 @@ export class Account extends React.Component {
           <header>
             <h3>My Points</h3>
             <div className="points">
-              <span>{this.props.user.points}!</span>
+              <span>{this.props.points}</span>
             </div>
           </header>
         </section>
 
-        <section>
-          <header>
-            <h3>My Times</h3>
-            <div className="times">
-              <Table user={this.props.user} reports={this.props.reports} />
-            </div>
-          </header>
-        </section>
+        {
+          this.props.reports === []
+            ? <section>
+              <header>
+                <h3>My Times</h3>
+              </header>
+              <div className="times">
+                <p>Report Times to Gain Points and Review Them Here!</p>
+              </div>
+
+            </section> : <section>
+              <header>
+                <h3>My Times</h3>
+              </header>
+              <div className="times">
+                <Table user={this.props.user} reports={this.props.reports} />
+              </div>
+
+            </section>
+
+        }
       </main>
     );
   }
 }
 
 const mapStatetoProps = state => ({
-  user: state.users[0],
-  reports: state.reports
+  user: state.user,
+  reports: state.reports,
+  points: state.points
   //.find(user => user.id === state.user_id)
 });
 

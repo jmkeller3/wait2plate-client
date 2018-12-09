@@ -108,24 +108,45 @@ export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
 // Get User Reported Times
 // Send to server: JWT
 // Get from server: User's report times (Restaurant name, time reported (id and the date), user's points)
-export const accountUser = async (JWT, user_id) => {
+export const accountUser = async (JWT) => {
+  console.log(JWT)
+
   try {
-    let user = await fetch(`${API_BASE_URL}/api/users/${user_id}`, {
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace('-', '+').replace('_', '/');
+      console.log(JSON.parse(window.atob(base64)))
+      return JSON.parse(window.atob(base64));
+    };
+    const user_id = parseJwt(JWT).user.id;
+    console.log(user_id)
+    const user = await fetch(`${API_BASE_URL}/api/users/${user_id}`, {
       method: "GET",
       headers: new Headers({
         Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json"
       })
-    });
+    }).then(res => res.json())
 
-    let reports = user.reports.map(report => {
-      fetch(`{API_BASE_URL}/api/reports/${report}`);
-    });
+    console.log(user)
 
+    // let user_reports = Array.from(user.reports)
+
+    // let reports = user_reports.map(report => {
+    //   fetch(`{API_BASE_URL}/api/reports/${report}`);
+    // }).then(res => res.json())
+    let reports = [];
+
+
+    console.log(reports)
     return {
       reports,
-      points: user.points
-    };
+      points: user.points,
+      user: {
+        username: user.username,
+        user_id: user.id
+      }
+    }
   } catch (err) {
     console.log(err);
   }

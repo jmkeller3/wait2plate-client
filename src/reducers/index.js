@@ -3,8 +3,10 @@ import * as actions from "../actions";
 const initialState = {
   fetching: false,
   fetched: false,
-  users: [],
-  token: "",
+  user: '',
+  token: {
+    "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWMwMTZmZjE5MTI4MDUwOWE4ZmZkYzM3IiwidXNlcm5hbWUiOiJUZXN0ZXIiLCJlbWFpbCI6ImpvaG5AdGVzdC5jb20iLCJwb2ludHMiOiIwIiwicmVwb3J0cyI6W119LCJpYXQiOjE1NDQzMTEzNTksImV4cCI6MTU0NDkxNjE1OSwic3ViIjoiVGVzdGVyIn0.61ZlCkLRgbVvwvVX2A147wASB7Zg8VXTv-D6qH-nDyU"
+  },
   reports: [],
   points: 0,
   restaurants: [],
@@ -55,10 +57,10 @@ export const wait2plateReducer = (state = initialState, action) => {
     case actions.FIND_RESTAURANTS:
       return { ...state, restaurants: action.restaurants };
 
-    case actions.GET_USERS:
+    case actions.GET_USER:
       return {
         ...state,
-        users: action.users
+        user: action.user
       };
 
     case actions.GET_USER_REPORTS:

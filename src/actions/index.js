@@ -56,10 +56,10 @@ export const reportTimeAction = reports => ({
   reports
 });
 
-export const GET_USERS = "GET_USERS";
-export const getUsers = users => ({
-  type: GET_USERS,
-  users
+export const GET_USER = "GET_USER";
+export const getUser = user => ({
+  type: GET_USER,
+  user
 });
 
 export const GET_USER_REPORTS = "GET_USER_REPORTS";
@@ -95,9 +95,9 @@ export const setGeolocation = (latitude, longitude) => ({
 
 export const getUsersThunk = () => async (dispatch, getState) => {
   dispatch(fetching());
-  const JWT = getState().token;
-  const users = await getAllUsers(JWT);
-  dispatch(getUsers(users));
+  const JWT = getState().token.authToken;
+  const user = await getAllUsers(JWT);
+  dispatch(getUser(user));
   dispatch(fetched());
 };
 
@@ -106,7 +106,7 @@ export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   getState
 ) => {
   dispatch(fetching());
-  const JWT = getState().token;
+  const JWT = getState().token.authToken;
   const restaurants = await searchRestaurants({
     cityState,
     latitude,
@@ -114,8 +114,6 @@ export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   });
   if (restaurants.id !== 0) {
     dispatch(findRestaurants(restaurants));
-  } else {
-    alert(`Please enter city to search`)
   }
   dispatch(fetched());
 };
@@ -125,7 +123,7 @@ export const reportTimeThunk = (time, restaurant_id, restaurant_name) => async (
   getState
 ) => {
   dispatch(fetching());
-  const JWT = getState().token;
+  const JWT = getState().token.authToken;
   const points = await reportTime(restaurant_id, restaurant_name, time, JWT);
   dispatch(addPoint(points));
   dispatch(fetched());
@@ -133,9 +131,10 @@ export const reportTimeThunk = (time, restaurant_id, restaurant_name) => async (
 
 export const accountUserThunk = () => async (dispatch, getState) => {
   dispatch(fetching());
-  const JWT = getState().token;
-  const { reports, points } = await accountUser(JWT);
-  dispatch(getUserReports(reports, points));
+  const JWT = getState().token.authToken;
+  const { reports, points, user } = await accountUser(JWT);
+  dispatch(getUser(user))
+  if (reports !== []) { dispatch(getUserReports(reports, points)); }
   dispatch(fetched);
 };
 
@@ -144,14 +143,14 @@ export const editTimeThunk = (reportId, newTime) => async (
   getState
 ) => {
   dispatch(fetching());
-  const JWT = getState().token;
+  const JWT = getState().token.authToken;
   await editTime(JWT, reportId, newTime);
   dispatch(editTimeAction);
 };
 
 export const deleteTimeThunk = reportId => async (dispatch, getState) => {
   dispatch(fetching());
-  const JWT = getState().token;
+  const JWT = getState().token.authToken;
   await deleteTime(JWT, reportId);
   dispatch(deleteTimeAction(reportId));
   dispatch(fetched());
