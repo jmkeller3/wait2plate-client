@@ -133,7 +133,7 @@ export const accountUserThunk = () => async (dispatch, getState) => {
   const JWT = getState().token.authToken;
   const { reports, points, user } = await accountUser(JWT);
   dispatch(getUser(user))
-  if (reports.length != 0) { dispatch(getUserReports(reports, points)); }
+  dispatch(getUserReports(reports, points));
   dispatch(fetched);
 };
 

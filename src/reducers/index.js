@@ -5,7 +5,7 @@ const initialState = {
   fetched: false,
   user: '',
   token: {
-    "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWMwMTZmZjE5MTI4MDUwOWE4ZmZkYzM3IiwidXNlcm5hbWUiOiJUZXN0ZXIiLCJlbWFpbCI6ImpvaG5AdGVzdC5jb20iLCJwb2ludHMiOiIwIiwicmVwb3J0cyI6W119LCJpYXQiOjE1NDQzMTEzNTksImV4cCI6MTU0NDkxNjE1OSwic3ViIjoiVGVzdGVyIn0.61ZlCkLRgbVvwvVX2A147wASB7Zg8VXTv-D6qH-nDyU"
+    "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWMwZGY5NmJmNGJiOTczMWM4ZmI1YTE0IiwidXNlcm5hbWUiOiJUZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwicG9pbnRzIjoxLCJyZXBvcnRzIjpbIjVjMGRmOTg1ZjRiYjk3MzFjOGZiNWExNSJdfSwiaWF0IjoxNTQ0NDIwOTQzLCJleHAiOjE1NDUwMjU3NDMsInN1YiI6IlRlc3QifQ.zfXS0J-SJMM-8zyAV9XTyYDmHbDh8B5En9SZ6HoMMnQ"
   },
   reports: [],
   points: 0,

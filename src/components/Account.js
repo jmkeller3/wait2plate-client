@@ -35,7 +35,7 @@ export class Account extends React.Component {
         </section>
 
         {
-          this.props.reports.length === 0
+          this.props.reports === []
             ? <section>
               <header>
                 <h3>My Times</h3>

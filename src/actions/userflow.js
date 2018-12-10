@@ -127,21 +127,27 @@ export const accountUser = async (JWT) => {
         Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json"
       })
-    }).then(res => res.json())
+    })
+      .then(res => res.json())
 
     console.log(user.reports)
 
-    let reports = user.reports.map(report => {
-      fetch(`${API_BASE_URL}/api/reports/${report}`, {
+    let reports = []
+
+    user.reports.map(async report => {
+      await fetch(`${API_BASE_URL}/api/reports/${report}`, {
         method: "GET",
         headers: new Headers({
           Authorization: `Bearer ${JWT}`,
           "Content-Type": "application/json"
         })
-      });
-    }).then(res => res.json())
+      }).then(res => res.json()).then(data => reports.push(data))
+
+
+    })
 
     console.log(reports)
+
     return {
       reports,
       points: user.points,
