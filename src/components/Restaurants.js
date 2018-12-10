@@ -34,9 +34,9 @@ export class Restaurants extends React.Component {
   }
 
   render() {
-    function millisToMinutesAndSeconds(millis) {
-      const minutes = Math.floor(millis / 60000);
-      const seconds = ((millis % 60000) / 1000).toFixed(0);
+    function secondsToMinutesAndSeconds(seconds) {
+      const minutes = Math.floor(seconds / 60);
+
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
@@ -45,36 +45,17 @@ export class Restaurants extends React.Component {
       return `${distance.toFixed(2)} Miles`;
     }
 
-    function averageTimes(times) {
-      return (
-        times.reduce(function (a, b) {
-          return a + b;
-        }) / times.length
-      );
-    }
-
-    // const restaurantData = this.props.restaurants.map(restaurant => {
-    //   function average(times) {
-    //     return (
-    //       times.reduce(function(a, b) {
-    //         return a + b;
-    //       }) / times.length
-    //     );
-    //   }
-    //   let average_time = average(restaurant.reported_times);
-
-    //   let times = millisToMinutesAndSeconds(average_time);
-
-    //
-    //   );
-    // });
     const restaurants = this.props.restaurants.map(restaurant => {
       return (
         <tr key={restaurant.id}>
           <td>{restaurant.name}</td>
           <td>{restaurant.display_address}</td>
           <td>{metersToMiles(restaurant.distance)}</td>
-          <td>{restaurant.reported_times}</td>
+          {
+            restaurant.reported_times === 'No times reported.'
+              ? <td>{restaurant.reported_times}</td>
+              : <td>{secondsToMinutesAndSeconds(restaurant.reported_times)}</td>
+          }
           <td>
             <button onClick={(e) => this.goToTimer(e, restaurant.name, restaurant.id)}>Report</button>
           </td>
