@@ -115,7 +115,6 @@ export class Restaurants extends React.Component {
             </thead>
             <tbody>{restaurants}</tbody>
           </table>
-          {/* <ul>{restaurants}</ul> */}
         </section>
       </main>
     );

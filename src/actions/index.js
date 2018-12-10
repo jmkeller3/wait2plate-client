@@ -123,8 +123,8 @@ export const reportTimeThunk = (time, restaurant_id, restaurant_name) => async (
 ) => {
   dispatch(fetching());
   const JWT = getState().token.authToken;
-  const points = await reportTime(restaurant_id, restaurant_name, time, JWT);
-  dispatch(addPoint(points));
+  await reportTime(restaurant_id, restaurant_name, time, JWT);
+  dispatch(addPoint());
   dispatch(fetched());
 };
 
@@ -133,7 +133,7 @@ export const accountUserThunk = () => async (dispatch, getState) => {
   const JWT = getState().token.authToken;
   const { reports, points, user } = await accountUser(JWT);
   dispatch(getUser(user))
-  if (reports !== []) { dispatch(getUserReports(reports, points)); }
+  if (reports.length != 0) { dispatch(getUserReports(reports, points)); }
   dispatch(fetched);
 };
 

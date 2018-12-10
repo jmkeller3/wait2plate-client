@@ -22,7 +22,7 @@ const initialState = {
 export const wait2plateReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_POINT:
-      return { ...state, points: action.points + 1 };
+      return { ...state, points: Math.floor(state.points + 1) };
 
     case actions.CLEAR_ERROR:
       return { ...state, error: null };

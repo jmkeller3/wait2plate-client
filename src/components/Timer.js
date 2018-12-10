@@ -11,8 +11,7 @@ export class Timer extends React.Component {
     this.state = {
       secondsElapsed: 0,
       lastClearedIncrementer: null,
-      restaurant_name: this.props.restaurant.name,
-      restaurant_id: this.props.restaurant.id
+      submitedTime: false
     };
     this.incrementer = null;
 
@@ -34,7 +33,16 @@ export class Timer extends React.Component {
     this.setState({
       lastClearedIncrementer: this.incrementer
     });
-    addPoint()
+    this.props.reportTimeThunk(this.state.secondsElapsed,
+      this.props.restaurant.id, this.props.restaurant.name);
+    this.setState({
+      submitedTime: true
+    })
+  }
+
+  goToAccount(event) {
+    event.preventDefault()
+    this.props.history.push(`/account`);
   }
 
   getSeconds() {
@@ -62,17 +70,31 @@ export class Timer extends React.Component {
               {this.getMinutes()}:{this.getSeconds()}
             </h1>
           </div>
-          <button
-            type="submit"
-            onClick={this.handleStopClick}
-            className="btn btn-report"
-          >
-            Stop and Report
-          </button>
+          {
+            this.state.submitedTime !== true
+              ? <button
+                type="submit"
+                onClick={this.handleStopClick}
+                className="btn btn-report"
+              >
+                Stop and Report
+                    </button>
+              : <p>Thank you for submitting your time for {this.props.restaurant.name}! You can review and edit your time on your account page by clicking the button below.</p>
+          }
         </section>
         <section>
-          <div className="flip-vertical-right logo">
-          </div>
+          {
+            this.state.submitedTime !== true
+              ? <div className="flip-vertical-right logo">
+              </div>
+              : <button
+                type="submit"
+                onClick={(e) => this.goToAccount(e)}
+                className="btn"
+              >
+                Go to Account
+          </button>
+          }
         </section>
       </main>
     );
@@ -81,7 +103,7 @@ export class Timer extends React.Component {
 
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurants,
+  restaurant: state.restaurant,
   latitude: state.latitude,
   longitude: state.longitude
 });

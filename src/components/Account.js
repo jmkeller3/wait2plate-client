@@ -15,7 +15,9 @@ export class Account extends React.Component {
     this.props.accountUserThunk();
   }
 
+
   render() {
+    console.log(this.props.reports)
     return (
       <main role="main">
         <header role="banner">
@@ -33,7 +35,7 @@ export class Account extends React.Component {
         </section>
 
         {
-          this.props.reports === []
+          this.props.reports.length === 0
             ? <section>
               <header>
                 <h3>My Times</h3>

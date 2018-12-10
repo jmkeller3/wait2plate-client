@@ -85,6 +85,7 @@ export const searchRestaurants = async ({ cityState, latitude, longitude }) => {
 // Send to server: Restaurant id, time, JWT
 // Get from server: Send user's updated points
 export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
+
   try {
     const report = await fetch(`${API_BASE_URL}/api/reports`, {
       method: "POST",
@@ -92,11 +93,11 @@ export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
         Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json"
       }),
-      body: {
+      body: JSON.stringify({
         restaurant_id,
         restaurant_name,
         time
-      }
+      })
     });
 
     return report;
@@ -128,15 +129,17 @@ export const accountUser = async (JWT) => {
       })
     }).then(res => res.json())
 
-    console.log(user)
+    console.log(user.reports)
 
-    // let user_reports = Array.from(user.reports)
-
-    // let reports = user_reports.map(report => {
-    //   fetch(`{API_BASE_URL}/api/reports/${report}`);
-    // }).then(res => res.json())
-    let reports = [];
-
+    let reports = user.reports.map(report => {
+      fetch(`${API_BASE_URL}/api/reports/${report}`, {
+        method: "GET",
+        headers: new Headers({
+          Authorization: `Bearer ${JWT}`,
+          "Content-Type": "application/json"
+        })
+      });
+    }).then(res => res.json())
 
     console.log(reports)
     return {
