@@ -13,15 +13,27 @@ export class Account extends React.Component {
     this.state = {
       newTime: ''
     }
-
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this)
   }
 
-  handleEdit(reportId) {
-    let newTime = this.state.newTime
+  handleEdit(event, reportId) {
+    event.preventDefault();
+    console.log(reportId)
+    let time = prompt("Enter New Time (Example 15:55)", "5:00")
+    function toSeconds(str) {
+      const pieces = str.split(":");
+      const result = Number(pieces[0]) * 60 + Number(pieces[1]);
+      return (result.toFixed(0))
+    }
+    const newTime = toSeconds(time)
+    console.log(newTime)
+    console.log(reportId)
     this.props.editTimeThunk(reportId, newTime)
   }
 
-  handleDelete(reportId) {
+  handleDelete(event, reportId) {
+    event.preventDefault();
     this.props.deleteTimeThunk(reportId)
   }
 
@@ -44,15 +56,15 @@ export class Account extends React.Component {
       let time = secondsToMinutesAndSeconds(datum.time);
       let date = moment(datum.date).format("MMMM D, YYYY")
       return (
-        <tr key={Math.random()}>
+        <tr key={datum.id}>
           <td>{datum.restaurant_name}</td>
           <td>{time}</td>
           <td>{date}</td>
           <td>
-            <button type="button" onClick={this.handleEdit}>Edit</button>
+            <button type="button" onClick={(e) => { this.handleEdit(e, datum.id) }}>Edit</button>
           </td>
           <td>
-            <button type="button" onClick={this.handleDelete}>Delete</button>
+            <button type="button" onClick={(e) => { this.handleDelete(e, datum.id) }}>Delete</button>
           </td>
         </tr>
       );

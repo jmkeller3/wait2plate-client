@@ -179,7 +179,7 @@ export const editTime = async (JWT, reportId, newTime) => {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
       }),
-      body: newTime
+      body: JSON.parse(newTime)
     });
 
     return newTime;

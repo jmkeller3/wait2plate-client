@@ -78,7 +78,8 @@ export class Table extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+  reports: state.reports,
+  user: state.user
 });
 
 const mapDispatchtoProps = {
