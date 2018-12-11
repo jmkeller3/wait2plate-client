@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import moment from "moment"
 
 import "./Account.css";
-
+import Table from "./Table"
 
 import { accountUserThunk, editTimeThunk, deleteTimeThunk } from "../actions";
 
@@ -10,37 +11,27 @@ export class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      newTime: ''
     }
 
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this)
   }
 
-  handleOpenModal() {
-    this.setState({ showModal: true })
+  handleEdit(reportId) {
+    let newTime = this.state.newTime
+    this.props.editTimeThunk(reportId, newTime)
   }
 
-  handleCloseModal() {
-    this.setState({ showModal: false })
-  }
-
-  handleEdit() {
-
-  }
-
-  handleDelete() {
-
+  handleDelete(reportId) {
+    this.props.deleteTimeThunk(reportId)
   }
 
   componentDidMount() {
-    this.props.accountUserThunk();
-  }
+    this.props.accountUserThunk()
 
+  }
 
   render() {
     console.log(this.props.reports)
-
     function secondsToMinutesAndSeconds(seconds) {
       const minutes = Math.floor(seconds / 60);
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
@@ -66,7 +57,6 @@ export class Account extends React.Component {
         </tr>
       );
     });
-
     return (
       <main role="main">
         <header role="banner">
