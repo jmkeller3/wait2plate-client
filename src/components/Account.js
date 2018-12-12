@@ -37,6 +37,11 @@ export class Account extends React.Component {
     this.props.deleteTimeThunk(reportId)
   }
 
+  goToLanding(event) {
+    event.preventDefault()
+    this.props.history.push(`/`);
+  }
+
   componentDidMount() {
     this.props.accountUserThunk()
 
@@ -70,43 +75,61 @@ export class Account extends React.Component {
       );
     });
     return (
-      <main role="main">
-        <header role="banner">
-          <h1>Welcome {this.props.user.username}!</h1>
-          <h2>A place to review your points and edit your times.</h2>
-        </header>
+      (
+        this.props.user.username
+          ? <main role="main">
+            <header role="banner">
+              <h1>Welcome {this.props.user.username}!</h1>
+              <h2>A place to review your points and edit your times.</h2>
+            </header>
 
-        <section>
-          <header>
-            <h3>My Points</h3>
-            <div className="points">
-              <span>{this.props.points}</span>
-            </div>
-          </header>
-        </section>
+            <section>
+              <header>
+                <h3>My Points</h3>
+                <div className="points">
+                  <span>{this.props.points}</span>
+                </div>
+              </header>
+            </section>
 
-        <section>
-          <header>
-            <h3>My Times</h3>
-          </header>
-          <div className="times">
-            {/* <Table user={this.props.user} reports={this.props.reports} /> */}
-            <table>
-              <thead>
-                <tr>
-                  <th>Restaurant</th>
-                  <th>Time</th>
-                  <th>Date</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>{tableData}</tbody>
-            </table>
-          </div>
+            <section>
+              <header>
+                <h3>My Times</h3>
+              </header>
+              <div className="times">
+                {/* <Table user={this.props.user} reports={this.props.reports} /> */}
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Restaurant</th>
+                      <th>Time</th>
+                      <th>Date</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>{tableData}</tbody>
+                </table>
+              </div>
 
-        </section>
-      </main>
+            </section>
+          </main>
+          : <main role="main">
+            <header role="banner">
+              <h1>Welcome!</h1>
+              <h2>Please sign-in to see your reports and points.</h2>
+            </header>
+            <section>
+              <button
+                type="submit"
+                onClick={(e) => this.goToLanding(e)}
+                className="btn"
+              >
+                Login
+          </button>
+            </section>
+          </main>
+      )
     );
   }
 }

@@ -166,17 +166,10 @@ export const accountUser = async (JWT) => {
 // Get from server: new time
 export const editTime = async (JWT, reportId, newTime) => {
   try {
-    function parseJwt(token) {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace('-', '+').replace('_', '/');
-      console.log(JSON.parse(window.atob(base64)))
-      return JSON.parse(window.atob(base64));
-    };
-    const token = parseJwt(JWT)
     fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
       method: "PUT",
       headers: new Headers({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json"
       }),
       body: JSON.parse(newTime)
@@ -193,17 +186,10 @@ export const editTime = async (JWT, reportId, newTime) => {
 // Get from server: deletion
 export const deleteTime = async (JWT, reportId) => {
   try {
-    function parseJwt(token) {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace('-', '+').replace('_', '/');
-      console.log(JSON.parse(window.atob(base64)))
-      return JSON.parse(window.atob(base64));
-    };
-    const token = parseJwt(JWT)
     fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
       method: "DELETE",
       headers: new Headers({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json"
       })
     });
