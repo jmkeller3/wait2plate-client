@@ -34,10 +34,12 @@ export class Restaurants extends React.Component {
   }
 
   render() {
-    function secondsToMinutesAndSeconds(seconds) {
-      const minutes = Math.floor(seconds / 60);
-
-      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    function secondsToMinutesAndSeconds(reportSeconds) {
+      {
+        const minutes = Math.floor(reportSeconds / 60);
+        const seconds = Math.floor(reportSeconds - (minutes * 60))
+        return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+      }
     }
 
     function metersToMiles(meters) {

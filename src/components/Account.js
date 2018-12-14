@@ -49,8 +49,9 @@ export class Account extends React.Component {
 
   render() {
     console.log(this.props.reports)
-    function secondsToMinutesAndSeconds(seconds) {
-      const minutes = Math.floor(seconds / 60);
+    function secondsToMinutesAndSeconds(reportSeconds) {
+      const minutes = Math.floor(reportSeconds / 60);
+      const seconds = Math.floor(reportSeconds - (minutes * 60))
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
     const data = this.props.reports.filter(

@@ -1,3 +1,4 @@
+import moment from "moment";
 const { API_BASE_URL } = require("../config");
 
 // Login
@@ -165,6 +166,8 @@ export const accountUser = async (JWT) => {
 // Send to server: JWT, report id, new time
 // Get from server: new time
 export const editTime = async (JWT, reportId, newTime) => {
+  // Parse time into number
+
   try {
     fetch(`${API_BASE_URL}/api/reports/${reportId}`, {
       method: "PUT",
@@ -172,7 +175,10 @@ export const editTime = async (JWT, reportId, newTime) => {
         Authorization: `Bearer ${JWT}`,
         "Content-Type": "application/json"
       }),
-      body: JSON.parse(newTime)
+      // send with body pair
+      body: JSON.stringify({
+        time: newTime
+      })
     });
 
     return newTime;
