@@ -6,6 +6,7 @@
 }
 
 th, td {
+    border: 1px solid #dddddd;
     padding: 10px;
 }
 
@@ -27,6 +28,10 @@ input {
     display: block;
   }
 
+  main {
+    width: 60%;
+  }
+
   thead tr {
     position: absolute;
     top: -9999px;
@@ -34,16 +39,17 @@ input {
   }
 
   tr {
-    border: 1px solid #16377c;
+    border: 1px solid #6e0400;
   }
 
   td {
     border: none;
-    border-bottom: 1px solid #6194ff;
+    border-bottom: 1px solid #a30500;
     position: relative;
     padding: 10px;
     padding-left: 50%;
     padding-right: 5px;
+    font-size: 12px;
   }
 
   td:before {
@@ -70,5 +76,9 @@ input {
   }
   td:nth-of-type(5):before {
     content: "Report Time";
+  }
+
+  button {
+    padding: 6px 8px;
   }
 }
