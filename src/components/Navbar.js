@@ -1,36 +1,59 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 import "./Navbar.css";
 
-export default function Navbar(props) {
-  return (
-    <nav>
-      <ul className="page-links">
-        <li>
-          <Link to={`/`}>Home</Link>
-        </li>
-        <li>
-          <Link to={`/restaurants`}>Restaurants</Link>
-        </li>
-        <li>
-          <Link to={`/timer`}>Timer</Link>
-        </li>
-        <li>
-          <Link to={`/account`}>Account</Link>
-        </li>
-      </ul>
-    </nav>
-  );
+export default class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showMenu: false
+    }
+
+    this.burgerToggle = this.burgerToggle.bind(this)
+  }
+
+  burgerToggle() {
+    let linksEl = document.querySelector('.narrowLinks');
+    if (linksEl.style.display === 'block') {
+      linksEl.style.display = 'none';
+    } else {
+      linksEl.style.display = 'block';
+    }
+    if (this.state.showMenu === false) {
+      this.setState({
+        showMenu: true
+      })
+    } else {
+      this.setState({
+        showMenu: false
+      })
+    }
+  }
+
+  render() {
+
+    return (
+      <nav>
+        <div className="navNarrow">
+          <div className="Menu">
+            {
+              this.state.showMenu !== true
+                ? <FontAwesomeIcon size={"2x"} icon="bars" onClick={this.burgerToggle} ></FontAwesomeIcon>
+                : <FontAwesomeIcon size={"2x"} icon="times" onClick={this.burgerToggle}></FontAwesomeIcon>
+            }
+            <div className="narrowLinks">
+              <Link to={`/`}>Home</Link>
+              <Link to={`/restaurants`}>Restaurants</Link>
+              <Link to={`/timer`}>Timer</Link>
+              <Link to={`/account`}>Account</Link>
+            </div>
+          </div>
+        </div>
+      </nav >
+    );
+  }
 }
 
-/* <Router>
-<nav className="navbar">
-    <h1><Link to="/">Home</Link></h1>
-
-    <Route path="/restaurants" component={Restaurants} />
-    <Route path="/timer" component={Timer} />
-    <Route path="/account/:userId" component={Account} />
-</nav>
-</Router> */

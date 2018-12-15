@@ -1,4 +1,9 @@
 footer {
   text-align: center;
   margin: 15px;
+  padding: 1rem;
+}
+
+.foot {
+  height: calc(100% - 60px);
 }

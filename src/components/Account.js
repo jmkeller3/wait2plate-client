@@ -44,8 +44,9 @@ export class Account extends React.Component {
 
   componentDidMount() {
     this.props.accountUserThunk()
-
   }
+
+
 
   render() {
     console.log(this.props.reports)
@@ -54,11 +55,8 @@ export class Account extends React.Component {
       const seconds = Math.floor(reportSeconds - (minutes * 60))
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
-    const data = this.props.reports.filter(
-      report => report.user_id === this.props.user.id
-    );
 
-    let tableData = data.map(datum => {
+    let tableData = this.props.reports.map(datum => {
       let time = secondsToMinutesAndSeconds(datum.time);
       let date = moment(datum.date).format("MMMM D, YYYY")
       return (
@@ -139,7 +137,6 @@ const mapStatetoProps = state => ({
   user: state.user,
   reports: state.reports,
   points: state.points
-  //.find(user => user.id === state.user_id)
 });
 
 const mapDispatchtoProps = {

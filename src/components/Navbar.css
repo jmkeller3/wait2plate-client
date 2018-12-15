@@ -1,3 +1,21 @@
+.navWide {
+  display: none;
+}
+
+.navNarrow i {
+  float: left
+}
+
+.navNarrow .narrowLinks {
+  display: none;
+}
+
+.navNarrow .narrowLinks a {
+  display: block;
+  float: left;
+  clear: left;
+}
+
 nav {
   background-color: #C23333;
   height: 40px;
@@ -13,6 +31,7 @@ li {
 a {
   text-decoration: none;
   color: #fff4dc;
+  background: #C23333;
 }
 
 a:visited {

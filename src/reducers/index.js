@@ -4,9 +4,7 @@ const initialState = {
   fetching: false,
   fetched: false,
   user: '',
-  token: {
-    "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWMwZGY5NmJmNGJiOTczMWM4ZmI1YTE0IiwidXNlcm5hbWUiOiJUZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwicG9pbnRzIjoxLCJyZXBvcnRzIjpbIjVjMGRmOTg1ZjRiYjk3MzFjOGZiNWExNSJdfSwiaWF0IjoxNTQ0NDIwOTQzLCJleHAiOjE1NDUwMjU3NDMsInN1YiI6IlRlc3QifQ.zfXS0J-SJMM-8zyAV9XTyYDmHbDh8B5En9SZ6HoMMnQ"
-  },
+  token: "",
   reports: [],
   points: 0,
   restaurants: [],
