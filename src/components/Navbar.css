@@ -10,10 +10,24 @@
   display: none;
 }
 
+.navWide .wideLinks {
+  display: none;
+}
+
 .navNarrow .narrowLinks a {
-  display: block;
-  float: left;
-  clear: left;
+  width: 75px;
+    display: block;
+    float: left;
+    clear: left;
+    font-size: 14px;
+    margin-left: -10px;
+    padding: 4px 0;
+    border: 1px solid #000;
+    border-top: none;
+}
+
+.navNarrow .narrowLinks a:first-child {
+  border-top: 1px solid #000;
 }
 
 nav {
@@ -38,9 +52,29 @@ a:visited {
   color: #fff;
 }
 
+.Menu:first-child {
+  margin-left: 10px;
+}
+
 @media only screen and (min-width: 767px) {
   nav {
     height: 50px;
+  }
+
+  .navWide, .navWide .wideLinks {
+    display: inline-block;
+    margin: 5px;
+  }
+
+  .wideLinks a {
+    margin: 10px;
+    padding-top: 20px;
+    font-size: 18px;
+    padding: 5px 0;
+  }
+
+  .Menu {
+    display: none;
   }
 
   li {
@@ -53,6 +87,22 @@ a:visited {
 @media only screen and (min-width: 1024px) {
   nav {
     height: 60px;
+  }
+
+  .navWide, .navWide .wideLinks {
+    display: inline-block;
+    margin: 8px;
+  }
+
+  .wideLinks a {
+    margin: 10px;
+    padding-top: 20px;
+    font-size: 22px;
+    padding: 5px 0;
+  }
+
+  .Menu {
+    display: none;
   }
 
   li {

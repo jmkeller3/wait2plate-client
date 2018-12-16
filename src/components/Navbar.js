@@ -52,7 +52,15 @@ export default class Navbar extends React.Component {
             </div>
           </div>
         </div>
-      </nav >
+        <div className="navWide">
+          <div className="wideLinks">
+            <Link to={`/`}>Home</Link>
+            <Link to={`/restaurants`}>Restaurants</Link>
+            <Link to={`/timer`}>Timer</Link>
+            <Link to={`/account`}>Account</Link>
+          </div>
+        </div>
+      </nav>
     );
   }
 }

@@ -4,7 +4,7 @@
   margin-right: auto;
   padding: 10px 0;
   border: 0;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .col-25 {
@@ -112,4 +112,38 @@ button:focus {
   margin: 0 6px;
   padding: 6px;
   display: inline-block;
+}
+
+@media only screen and (max-width: 765px) {
+  .col-25 {
+    float: left;
+    width: 100%;
+    margin-top: 6px;
+  }
+  
+  .col-75 {
+    float: left;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .submit-btn {
+    padding: 4px 16px;
+    width: auto;
+  }
+
+  input,
+label {
+  margin: 6px;
+  text-align: left;
+}
+
+input {
+  width: 70%;
+  padding: 3px 8px;
+}
+
+section {
+  width: 100%
+}
 }
