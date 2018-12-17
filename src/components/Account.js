@@ -18,7 +18,6 @@ export class Account extends React.Component {
 
   handleEdit(event, reportId) {
     event.preventDefault();
-    console.log(reportId)
     let time = prompt("Enter New Time (Example 15:55)", "5:00")
     function toSeconds(str) {
       const pieces = str.split(":");
@@ -26,8 +25,6 @@ export class Account extends React.Component {
       return (result.toFixed(0))
     }
     const newTime = toSeconds(time)
-    console.log(newTime)
-    console.log(reportId)
     this.props.editTimeThunk(reportId, newTime)
   }
 
@@ -53,9 +50,7 @@ export class Account extends React.Component {
       const seconds = Math.floor(reportSeconds - (minutes * 60))
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
-    console.log(this.props.reports)
     const tableData = this.props.reports.map(datum => {
-      console.log(`TEST ...`)
       return (
         <tr key={datum.id}>
           <td>{datum.restaurant_name}</td>

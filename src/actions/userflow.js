@@ -111,17 +111,13 @@ export const reportTime = async (restaurant_id, restaurant_name, time, JWT) => {
 // Send to server: JWT
 // Get from server: User's report times (Restaurant name, time reported (id and the date), user's points)
 export const accountUser = async (JWT) => {
-  console.log(JWT)
-
   try {
     function parseJwt(token) {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace('-', '+').replace('_', '/');
-      console.log(JSON.parse(window.atob(base64)))
       return JSON.parse(window.atob(base64));
     };
     const user_id = parseJwt(JWT).user.id;
-    console.log(user_id)
     const user = await fetch(`${API_BASE_URL}/api/users/${user_id}`, {
       method: "GET",
       headers: new Headers({
@@ -130,20 +126,6 @@ export const accountUser = async (JWT) => {
       })
     })
       .then(res => res.json())
-
-    // let reports = []
-
-    // user.reports.map(async report => {
-    //   await fetch(`${API_BASE_URL}/api/reports/${report}`, {
-    //     method: "GET",
-    //     headers: new Headers({
-    //       Authorization: `Bearer ${JWT}`,
-    //       "Content-Type": "application/json"
-    //     })
-    //   }).then(res => res.json())
-    //     .then(data => reports.push(data))
-    //     .then(console.log(reports))
-    // })
 
     let reports = await Promise.all(user.reports.map(report => {
       return fetch(`${API_BASE_URL}/api/reports/${report}`, {
@@ -154,9 +136,6 @@ export const accountUser = async (JWT) => {
         })
       }).then(res => res.json())
     }))
-
-
-    console.log(reports)
 
     return {
       reports,
@@ -208,7 +187,6 @@ export const deleteTime = async (JWT, reportId) => {
         "Content-Type": "application/json"
       })
     });
-    return console.log(`Report Deleted`);
   } catch (err) {
     console.log(err);
   }

@@ -188,7 +188,6 @@ export const signupThunk = (username, email, pass) => async dispatch => {
   dispatch(fetching());
   try {
     const user = await signup(username, email, pass);
-    console.log(user)
     if (user.code === 422) {
       dispatch(fetchedHasError(user.message))
 
