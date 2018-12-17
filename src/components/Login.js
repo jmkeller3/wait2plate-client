@@ -217,6 +217,7 @@ export class Login extends React.Component {
             </section>
           )}
         <h3>Click the sample button below to see James's perspective in Utah.</h3>
+        <p>Simply choose a restaurant to report and then go the account page to view or edit the different reports.</p>
         <button onClick={() => this.sampleButton()}>Sample View</button>
       </div>
     );
