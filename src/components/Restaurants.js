@@ -48,7 +48,6 @@ export class Restaurants extends React.Component {
     }
 
     const restaurants = this.props.restaurants.map(restaurant => {
-      console.log(`TEST ...`)
       return (
         <tr key={restaurant.id}>
           <td>{restaurant.name}</td>
