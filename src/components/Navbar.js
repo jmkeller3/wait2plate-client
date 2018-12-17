@@ -12,7 +12,8 @@ export default class Navbar extends React.Component {
       showMenu: false
     }
 
-    this.burgerToggle = this.burgerToggle.bind(this)
+    this.burgerToggle = this.burgerToggle.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   burgerToggle() {
@@ -33,6 +34,10 @@ export default class Navbar extends React.Component {
     }
   }
 
+  signOut() {
+    localStorage.clear()
+  }
+
   render() {
 
     return (
@@ -47,8 +52,8 @@ export default class Navbar extends React.Component {
             <div className="narrowLinks">
               <Link to={`/`}>Home</Link>
               <Link to={`/restaurants`}>Restaurants</Link>
-              <Link to={`/timer`}>Timer</Link>
               <Link to={`/account`}>Account</Link>
+              <a href="#" onClick={() => this.signOut()}>Logout</a>
             </div>
           </div>
         </div>
@@ -56,8 +61,8 @@ export default class Navbar extends React.Component {
           <div className="wideLinks">
             <Link to={`/`}>Home</Link>
             <Link to={`/restaurants`}>Restaurants</Link>
-            <Link to={`/timer`}>Timer</Link>
             <Link to={`/account`}>Account</Link>
+            <a href="/" onClick={() => this.signOut()}>Logout</a>
           </div>
         </div>
       </nav>

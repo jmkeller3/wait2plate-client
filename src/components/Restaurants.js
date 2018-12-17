@@ -48,6 +48,7 @@ export class Restaurants extends React.Component {
     }
 
     const restaurants = this.props.restaurants.map(restaurant => {
+      console.log(`TEST ...`)
       return (
         <tr key={restaurant.id}>
           <td>{restaurant.name}</td>
@@ -73,17 +74,19 @@ export class Restaurants extends React.Component {
 
         <section>
           <h3 className="restaurant-list">Search</h3>
-          <label>Search by City</label>
-          <input
-            placeholder="City, State"
-            type="text"
-            name="cityState"
-            id="cityState"
-            value={this.state.cityState}
-            onChange={e => {
-              this.setState({ cityState: e.target.value });
-            }}
-          />
+          <div className="citySearch">
+            <label>Search by City</label>
+            <input
+              placeholder="City, State"
+              type="text"
+              name="cityState"
+              id="cityState"
+              value={this.state.cityState}
+              onChange={e => {
+                this.setState({ cityState: e.target.value });
+              }}
+            />
+          </div>
           <button className="search-btn" type="submit" onClick={this.handleSearch}>Search</button>
           <h3 className="restaurant-list">List</h3>
           <table className="text-list">

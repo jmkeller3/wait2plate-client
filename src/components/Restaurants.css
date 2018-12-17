@@ -5,6 +5,10 @@
     padding: 10px;
 }
 
+.citySearch {
+  border-bottom: 1px solid #000;
+}
+
 th, td {
     border: 1px solid #dddddd;
     padding: 10px;

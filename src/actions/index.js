@@ -131,10 +131,12 @@ export const reportTimeThunk = (time, restaurant_id, restaurant_name) => async (
 export const accountUserThunk = () => async (dispatch, getState) => {
   dispatch(fetching());
   const JWT = getState().token.authToken;
-  const { reports, points, user } = await accountUser(JWT);
-  dispatch(getUser(user))
-  dispatch(getUserReports(reports, points));
-  dispatch(fetched);
+  if (JWT != null) {
+    const { reports, points, user } = await accountUser(JWT);
+    dispatch(getUserReports(reports, points));
+    dispatch(getUser(user))
+  }
+  dispatch(fetched());
 };
 
 export const editTimeThunk = (reportId, newTime) => async (
@@ -160,8 +162,13 @@ export const loginThunk = (username, pass) => async dispatch => {
   dispatch(fetching());
   try {
     const user = await login(username, pass);
-    dispatch(loginAction(user));
-    dispatch(fetched());
+    if (user == undefined) {
+      dispatch(fetchedHasError(`Wrong Username or Password`))
+    } else {
+      dispatch(loginAction(user));
+      localStorage.setItem("token", user.authToken)
+      dispatch(fetched());
+    }
   } catch (error) {
     dispatch(fetchedHasError(error));
   }
@@ -172,8 +179,17 @@ export const signupThunk = (username, email, pass) => async dispatch => {
   dispatch(fetching());
   try {
     const user = await signup(username, email, pass);
-    dispatch(signupAction(user));
-    dispatch(fetched());
+    console.log(user)
+    if (user.code === 422) {
+      dispatch(fetchedHasError(user.message))
+
+    } else {
+      dispatch(signupAction(user));
+      localStorage.setItem("token", user)
+      dispatch(clearError());
+      dispatch(fetched());
+    }
+
   } catch (error) {
     dispatch(fetchedHasError(error));
   }

@@ -53,50 +53,72 @@ export class Timer extends React.Component {
     return Math.floor(this.state.secondsElapsed / 60);
   }
 
+  goToLanding(event) {
+    event.preventDefault()
+    this.props.history.push(`/`);
+  }
+
   render() {
     return (
-      <main role="main">
-        <header>
-          <h1>Wait Time</h1>
-          <p>
-            Your time has already started. Hit the stop and report button once
-            you get your food! You can always edit you times later if you forget
-            to press stop.
-          </p>
-        </header>
-        <section>
-          <div className="timer">
-            <h1 className="timer-display">
-              {this.getMinutes()}:{this.getSeconds()}
-            </h1>
-          </div>
-          {
-            this.state.submitedTime !== true
-              ? <button
-                type="submit"
-                onClick={this.handleStopClick}
-                className="btn btn-report"
-              >
-                Stop and Report
-                    </button>
-              : <p>Thank you for submitting your time for {this.props.restaurant.name}! You can review and edit your time on your account page by clicking the button below.</p>
-          }
-        </section>
-        <section>
-          {
-            this.state.submitedTime !== true
-              ? <div className="flip-vertical-right logo">
+      (
+        this.props.token
+          ? <main role="main">
+            <header>
+              <h1>Wait Time</h1>
+              <p>
+                Your time has already started. Hit the stop and report button once
+                you get your food! You can always edit you times later if you forget
+                to press stop.
+                </p>
+            </header>
+            <section>
+              <div className="timer">
+                <h1 className="timer-display">
+                  {this.getMinutes()}:{this.getSeconds()}
+                </h1>
               </div>
-              : <button
-                type="submit"
-                onClick={(e) => this.goToAccount(e)}
-                className="btn"
-              >
-                Go to Account
-          </button>
-          }
-        </section>
-      </main>
+              {
+                this.state.submitedTime !== true
+                  ? <button
+                    type="submit"
+                    onClick={this.handleStopClick}
+                    className="btn btn-report"
+                  >
+                    Stop and Report
+                          </button>
+                  : <p>Thank you for submitting your time for {this.props.restaurant.name}! You can review and edit your time on your account page by clicking the button below.</p>
+              }
+            </section>
+            <section>
+              {
+                this.state.submitedTime !== true
+                  ? <div className="flip-vertical-right logo">
+                  </div>
+                  : <button
+                    type="submit"
+                    onClick={(e) => this.goToAccount(e)}
+                    className="btn"
+                  >
+                    Go to Account
+                </button>
+              }
+            </section>
+          </main>
+          : <main role="main">
+            <header role="banner">
+              <h1>Welcome!</h1>
+              <h2>Please sign-in to report and submit times.</h2>
+            </header>
+
+            <button
+              type="submit"
+              onClick={(e) => this.goToLanding(e)}
+              className="btn"
+            >
+              Login
+    </button>
+          </main>
+      )
     );
   }
 }
@@ -105,7 +127,8 @@ export class Timer extends React.Component {
 const mapStateToProps = state => ({
   restaurant: state.restaurant,
   latitude: state.latitude,
-  longitude: state.longitude
+  longitude: state.longitude,
+  token: state.token
 });
 
 const mapDispatchtoProps = {

@@ -59,7 +59,7 @@ export class Login extends React.Component {
   }
 
   render() {
-    if (this.props.error === null && this.state.toRestaruants === true) {
+    if (this.props.error === '' && this.state.toRestaruants === true) {
       return <Redirect to="/restaurants" />;
     }
     return (
@@ -86,9 +86,8 @@ export class Login extends React.Component {
           <section className="signup">
             <header>
               <h3>Sign up</h3>
-              {this.props.error !== null && (
-                <h4 className="error">{this.props.error} </h4>
-              )}
+              <h4 className="error">{this.props.error}</h4>
+
             </header>
             <form className="signup-form" onSubmit={this.handleSignup}>
               <div className="row">
@@ -169,9 +168,7 @@ export class Login extends React.Component {
             <section className="login">
               <header>
                 <h3>Login</h3>
-                {this.props.error !== null && (
-                  <h4 className="error">{this.props.error} </h4>
-                )}
+                <h4 className="error">{this.props.error}</h4>
               </header>
               <form className="login-form" onSubmit={this.handleLogin}>
                 <div className="row">

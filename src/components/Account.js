@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import moment from "moment"
 
 import "./Account.css";
-import Table from "./Table"
 
 import { accountUserThunk, editTimeThunk, deleteTimeThunk } from "../actions";
 
@@ -49,21 +48,19 @@ export class Account extends React.Component {
 
 
   render() {
-    console.log(this.props.reports)
     function secondsToMinutesAndSeconds(reportSeconds) {
       const minutes = Math.floor(reportSeconds / 60);
       const seconds = Math.floor(reportSeconds - (minutes * 60))
       return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
-
-    let tableData = this.props.reports.map(datum => {
-      let time = secondsToMinutesAndSeconds(datum.time);
-      let date = moment(datum.date).format("MMMM D, YYYY")
+    console.log(this.props.reports)
+    const tableData = this.props.reports.map(datum => {
+      console.log(`TEST ...`)
       return (
         <tr key={datum.id}>
           <td>{datum.restaurant_name}</td>
-          <td>{time}</td>
-          <td>{date}</td>
+          <td>{secondsToMinutesAndSeconds(datum.time)}</td>
+          <td>{moment(datum.date).format("MMMM D, YYYY")}</td>
           <td>
             <button type="button" onClick={(e) => { this.handleEdit(e, datum.id) }}>Edit</button>
           </td>
@@ -95,22 +92,18 @@ export class Account extends React.Component {
               <header>
                 <h3>My Times</h3>
               </header>
-              <div className="times">
-                {/* <Table user={this.props.user} reports={this.props.reports} /> */}
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Restaurant</th>
-                      <th>Time</th>
-                      <th>Date</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>{tableData}</tbody>
-                </table>
-              </div>
-
+              <table>
+                <thead>
+                  <tr>
+                    <th>Restaurant</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>{tableData}</tbody>
+              </table>
             </section>
           </main>
           : <main role="main">
@@ -118,15 +111,14 @@ export class Account extends React.Component {
               <h1>Welcome!</h1>
               <h2>Please sign-in to see your reports and points.</h2>
             </header>
-            <section>
-              <button
-                type="submit"
-                onClick={(e) => this.goToLanding(e)}
-                className="btn"
-              >
-                Login
+
+            <button
+              type="submit"
+              onClick={(e) => this.goToLanding(e)}
+              className="btn"
+            >
+              Login
           </button>
-            </section>
           </main>
       )
     );

@@ -14,7 +14,7 @@ const initialState = {
   },
   latitude: "",
   longitude: "",
-  error: null
+  error: ''
 };
 
 export const wait2plateReducer = (state = initialState, action) => {
@@ -23,7 +23,7 @@ export const wait2plateReducer = (state = initialState, action) => {
       return { ...state, points: Math.floor(state.points + 1) };
 
     case actions.CLEAR_ERROR:
-      return { ...state, error: null };
+      return { ...state, error: '' };
 
     case actions.DELETE_TIME_ACTION:
       return {
@@ -52,7 +52,7 @@ export const wait2plateReducer = (state = initialState, action) => {
     case actions.FETCHED_HAS_ERROR:
       return {
         ...state,
-        error: action.error.message,
+        error: action.error,
         fetching: false
       };
 
