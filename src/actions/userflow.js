@@ -131,21 +131,30 @@ export const accountUser = async (JWT) => {
     })
       .then(res => res.json())
 
-    console.log(user.reports)
+    // let reports = []
 
-    let reports = []
+    // user.reports.map(async report => {
+    //   await fetch(`${API_BASE_URL}/api/reports/${report}`, {
+    //     method: "GET",
+    //     headers: new Headers({
+    //       Authorization: `Bearer ${JWT}`,
+    //       "Content-Type": "application/json"
+    //     })
+    //   }).then(res => res.json())
+    //     .then(data => reports.push(data))
+    //     .then(console.log(reports))
+    // })
 
-    user.reports.map(async report => {
-      await fetch(`${API_BASE_URL}/api/reports/${report}`, {
+    let reports = await Promise.all(user.reports.map(report => {
+      return fetch(`${API_BASE_URL}/api/reports/${report}`, {
         method: "GET",
         headers: new Headers({
           Authorization: `Bearer ${JWT}`,
           "Content-Type": "application/json"
         })
-      }).then(res => res.json()).then(data => reports.push(data))
+      }).then(res => res.json())
+    }))
 
-
-    })
 
     console.log(reports)
 
@@ -203,10 +212,4 @@ export const deleteTime = async (JWT, reportId) => {
   } catch (err) {
     console.log(err);
   }
-};
-
-// Log Out
-export const logOut = async () => {
-  localStorage.clear("user");
-  localStorage.clear("token");
 };

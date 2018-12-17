@@ -90,6 +90,14 @@ export const wait2plateReducer = (state = initialState, action) => {
     case actions.REPORT_TIME_ACTION:
       return { ...state, reports: action.reports };
 
+    case actions.SAMPLE_USER_ACTION:
+      return {
+        ...state,
+        latitude: action.latitude,
+        longitude: action.longitude,
+        token: action.token
+      }
+
     default:
       return state;
   }

@@ -77,6 +77,7 @@ export class Restaurants extends React.Component {
           <div className="citySearch">
             <label>Search by City</label>
             <input
+              aria-label="Search by City"
               placeholder="City, State"
               type="text"
               name="cityState"

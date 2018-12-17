@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { withRouter, Redirect } from "react-router";
 
-import { loginThunk, signupThunk, setGeolocation } from "../actions";
+import { loginThunk, signupThunk, setGeolocation, sampleUserThunk } from "../actions";
 
 import "./Login.css";
 
@@ -55,7 +55,11 @@ export class Login extends React.Component {
         position.coords.latitude, position.coords.longitude
       )
     })
+  }
 
+  sampleButton() {
+    this.props.sampleUserThunk();
+    this.props.history.push(`/restaurants`);
   }
 
   render() {
@@ -67,6 +71,7 @@ export class Login extends React.Component {
         <header role="banner">
           <h1>Sign up/Login Page</h1>
           <h2>Join the community to enjoy great meals at fast times.</h2>
+
         </header>
         <div className="tabs">
           <button
@@ -211,6 +216,8 @@ export class Login extends React.Component {
               </form>
             </section>
           )}
+        <h3>Click the sample button below to see James's perspective in Utah.</h3>
+        <button onClick={() => this.sampleButton()}>Sample View</button>
       </div>
     );
   }
@@ -227,7 +234,8 @@ function mapStateToProps(state) {
 const mapDispatchtoProps = {
   loginThunk,
   signupThunk,
-  setGeolocation
+  setGeolocation,
+  sampleUserThunk
 };
 
 const LoginWithRouter = withRouter(Login);

@@ -100,6 +100,15 @@ export const selcectRestaurant = (name, id) => ({
   id
 })
 
+export const SAMPLE_USER_ACTION = "SAMPLE_USER_ACTION";
+export const sampleUserAction = () => ({
+  type: SAMPLE_USER_ACTION,
+  latitude: 40.4185088,
+  longitude: -111.87814399999999,
+  token: { authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWMxNzJjMWU0NzQ4NDEyMmVjZTAwNTZhIiwidXNlcm5hbWUiOiJKYW1lcyIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInBvaW50cyI6MywicmVwb3J0cyI6WyI1YzE3MmMyZTQ3NDg0MTIyZWNlMDA1NmIiLCI1YzE3MmMzYTQ3NDg0MTIyZWNlMDA1NmQiLCI1YzE3MmM0MTQ3NDg0MTIyZWNlMDA1NmYiXX0sImlhdCI6MTU0NTAyNDg1MywiZXhwIjoxNjA1NTA0ODUzLCJzdWIiOiJKYW1lcyJ9.ChKOJP1Jyf8xcoM_iMyLGlj8WKCDBP4ZCdEwnEcGteM" },
+
+})
+
 export const getRestaurantsThunk = (cityState, latitude, longitude) => async (
   dispatch,
   getState
@@ -166,7 +175,7 @@ export const loginThunk = (username, pass) => async dispatch => {
       dispatch(fetchedHasError(`Wrong Username or Password`))
     } else {
       dispatch(loginAction(user));
-      localStorage.setItem("token", user.authToken)
+      localStorage.setItem("authToken", user.authToken)
       dispatch(fetched());
     }
   } catch (error) {
@@ -185,7 +194,7 @@ export const signupThunk = (username, email, pass) => async dispatch => {
 
     } else {
       dispatch(signupAction(user));
-      localStorage.setItem("token", user)
+      localStorage.setItem("authToken", user)
       dispatch(clearError());
       dispatch(fetched());
     }
@@ -194,3 +203,13 @@ export const signupThunk = (username, email, pass) => async dispatch => {
     dispatch(fetchedHasError(error));
   }
 };
+
+export const sampleUserThunk = () =>
+  async dispatch => {
+    dispatch(clearError());
+    dispatch(fetching());
+    dispatch(sampleUserAction());
+    localStorage.setItem("authToken", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWMxNzJjMWU0NzQ4NDEyMmVjZTAwNTZhIiwidXNlcm5hbWUiOiJKYW1lcyIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInBvaW50cyI6MywicmVwb3J0cyI6WyI1YzE3MmMyZTQ3NDg0MTIyZWNlMDA1NmIiLCI1YzE3MmMzYTQ3NDg0MTIyZWNlMDA1NmQiLCI1YzE3MmM0MTQ3NDg0MTIyZWNlMDA1NmYiXX0sImlhdCI6MTU0NTAyNDg1MywiZXhwIjoxNjA1NTA0ODUzLCJzdWIiOiJKYW1lcyJ9.ChKOJP1Jyf8xcoM_iMyLGlj8WKCDBP4ZCdEwnEcGteM")
+    dispatch(fetched());
+  }
+
