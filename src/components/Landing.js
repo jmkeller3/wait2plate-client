@@ -15,8 +15,8 @@ export default function Landing(props) {
       <section>
         <h3>Purpose and Function of Web App</h3>
         <p>
-          We live in busy world filled with great food. When pressed for time,
-          our main crietiron for choosing where to eat is often determined by
+          We live in a busy world filled with great food. When pressed for time,
+          our main criteron for choosing where to eat is often determined by
           quickness.
         </p>
         <p>
@@ -36,7 +36,7 @@ export default function Landing(props) {
       </section>
 
       <section>
-        <h3>Details about 3rd party APIs and secrutiy</h3>
+        <h3>Details about 3rd party APIs and security</h3>
         <p>
           In addition to its own API, Wait2Plate utilizes Yelp's API to search
           nearby restaurants for users. Your information will be kept private
