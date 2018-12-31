@@ -1,16 +1,16 @@
 .restaurant-list {
-    background-color: #910101;
-    color: #fff;
+    background-color: #4C1B1B;
+    color: #FCFAE1;
     margin: 0;
     padding: 10px;
 }
 
 .citySearch {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #1E1E20;
 }
 
 th, td {
-    border: 1px solid #dddddd;
+    border: 1px solid #BD8D46;
     padding: 10px;
 }
 
@@ -43,12 +43,12 @@ input {
   }
 
   tr {
-    border: 1px solid #6e0400;
+    border: 1px solid #BD8D46;
   }
 
   td {
     border: none;
-    border-bottom: 1px solid #a30500;
+    border-bottom: 1px solid #BD8D46;
     position: relative;
     padding: 10px;
     padding-left: 50%;

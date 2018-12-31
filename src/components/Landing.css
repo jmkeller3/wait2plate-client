@@ -24,20 +24,29 @@ p {
 }
 
 section {
-  border: 1px solid #000;
+  border: 1px solid #4C1B1B;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 100%;;
+  background-color: #F6e497;
+  color: #333
 }
-
+/* 
 section:nth-child(odd) {
-  background-color: #910101;
-  color: white
-}
+  background-color: #4C1B1B;
+  color: #fff
+} */
 
 main {
   margin-left: auto;
   margin-right: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr 1fr 1fr;
+  
 }
 
 /* Tablet */

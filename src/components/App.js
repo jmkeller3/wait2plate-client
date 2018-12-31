@@ -11,6 +11,7 @@ import { loginAction } from "../actions";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import "./App.css"
 
 library.add(faBars);
 library.add(faTimes)

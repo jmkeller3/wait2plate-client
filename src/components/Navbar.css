@@ -22,16 +22,17 @@
     font-size: 14px;
     margin-left: -10px;
     padding: 4px 0;
-    border: 1px solid #000;
+    border: 1px solid #1E1E20;
     border-top: none;
 }
 
 .navNarrow .narrowLinks a:first-child {
-  border-top: 1px solid #000;
+  border-top: 1px solid #1E1E20;
 }
 
 nav {
-  background-color: #C23333;
+  background-color: #B9121B;
+  color: #333;
   height: 40px;
 }
 
@@ -45,7 +46,7 @@ li {
 a {
   text-decoration: none;
   color: #fff4dc;
-  background: #C23333;
+  background: #B9121B;
 }
 
 a:visited {
