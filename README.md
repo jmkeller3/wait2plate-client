@@ -34,10 +34,6 @@ User's Account Page:
 * Javascript
 * React
 * Redux
-* node.js
-* Express
-* Mongoose
-* MongoDB
 
 ## Backend API
 
