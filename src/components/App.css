@@ -1,8 +1,9 @@
 body {
     box-sizing: border-box;
     margin: 0;
-    background-color: #4C1B1B;
-    color: #fff;
+    background: #FCFAE1;
+    background-repeat: no-repeat;
+    color: #333;
 }
 
 /* Red */

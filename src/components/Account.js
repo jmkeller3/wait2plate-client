@@ -68,7 +68,7 @@ export class Account extends React.Component {
     return (
       (
         this.props.user.username
-          ? <main role="main">
+          ? <main className="account" role="main">
             <header role="banner">
               <h1>Welcome {this.props.user.username}!</h1>
               <h2>A place to review your points and edit your times.</h2>
@@ -101,7 +101,7 @@ export class Account extends React.Component {
               </table>
             </section>
           </main>
-          : <main role="main">
+          : <main className="account" role="main">
             <header role="banner">
               <h1>Welcome!</h1>
               <h2>Please sign-in to see your reports and points.</h2>

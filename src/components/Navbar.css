@@ -16,7 +16,7 @@
 
 .navNarrow .narrowLinks a {
   width: 75px;
-    display: block;
+    display: table-footer-group;
     float: left;
     clear: left;
     font-size: 14px;
@@ -31,9 +31,13 @@
 }
 
 nav {
-  background-color: #B9121B;
-  color: #333;
+  background-color: #4C1B1B;
+  color: #FCFAE1;
   height: 40px;
+}
+
+nav .navNarrow .Menu svg {
+  margin-top: 4px;
 }
 
 li {
@@ -45,8 +49,9 @@ li {
 
 a {
   text-decoration: none;
-  color: #fff4dc;
-  background: #B9121B;
+  color: #FCFAE1;
+  background: #4C1B1B;
+  font-size: 18px;
 }
 
 a:visited {

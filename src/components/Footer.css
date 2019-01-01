@@ -1,7 +1,10 @@
 footer {
   text-align: center;
-  margin: 15px;
+  
   padding: 1rem;
+  background-color: #BD8D46;
+  color: #333;
+  font-weight: 600
 }
 
 .foot {

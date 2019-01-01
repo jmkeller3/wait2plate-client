@@ -4,8 +4,11 @@
   margin-right: auto;
   padding: 10px 0;
   border: 0;
+  border-radius: 15px;
   margin-bottom: 0px;
+  background-color: #BD8D46 
 }
+
 
 .col-25 {
   float: left;
@@ -38,6 +41,7 @@ input {
 
 label {
   display: inline-block;
+  font-weight: 600;
 }
 
 form {
@@ -49,15 +53,15 @@ section {
   margin: 10px;
 }
 
-.active input {
-  outline: 2px solid #ff0000;
+input:focus {
+  outline: 2px solid #B9121B;
 }
 
 button {
-  background-color: #fff;
+  background-color: #FCFAE1;
   border: 1px solid #000;
   border-radius: 3px;
-  color: #C23333;
+  color: #B9121B;
   font-size: 16px;
   font-weight: 600;
   padding: 12px 20px;
@@ -68,14 +72,14 @@ button {
 
 button:hover,
 button:focus {
-  background-color: #790202;
-  color: #fff;
+  background-color: #4C1B1B;
+  color: #FCFAE1;
 }
 
 .btn-tab {
   margin: 10px;
-  background-color: #b60606;
-  color: #fff;
+  background-color: #FCFAE1;
+  color: #333;
   padding: 12px 20px;
   border: 0;
   border-radius: 2px;

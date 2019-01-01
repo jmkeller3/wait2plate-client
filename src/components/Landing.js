@@ -3,6 +3,7 @@ import React from "react";
 import Login from "./Login";
 
 import "./Landing.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Landing(props) {
   return (
@@ -13,7 +14,9 @@ export default function Landing(props) {
       </header>
       <div className="grid">
         <section className="information">
+
           <h3>Purpose and Function of Web App</h3>
+          <FontAwesomeIcon size="2x" icon="clock"></FontAwesomeIcon>
           <p>
             We live in a busy world filled with great food. When pressed for time,
             our main criteron for choosing where to eat is often determined by
@@ -27,7 +30,9 @@ export default function Landing(props) {
         </section>
 
         <section className="information">
+
           <h3>Details and features about Web App</h3>
+          <FontAwesomeIcon size="2x" icon="rocket"></FontAwesomeIcon>
           <p>
             The App displays nearby restaurants and their average reported times
             by other users. By default, it uses your set zip code but you can
@@ -36,7 +41,9 @@ export default function Landing(props) {
         </section>
 
         <section className="information">
+
           <h3>Details about 3rd party APIs and security</h3>
+          <FontAwesomeIcon size="2x" icon="shield-alt"></FontAwesomeIcon>
           <p>
             In addition to its own API, Wait2Plate utilizes Yelp's API to search
             nearby restaurants for users. Your information will be kept private
@@ -45,7 +52,9 @@ export default function Landing(props) {
         </section>
 
         <section className="information">
+
           <h3>About Designer</h3>
+          <FontAwesomeIcon size="2x" icon="user"></FontAwesomeIcon>
           <p>
             John Keller started his coding journey in April of 2018 and has loved
             it ever since. He enjoys solving problems and making people's lives
