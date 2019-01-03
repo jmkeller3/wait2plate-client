@@ -35,7 +35,8 @@ export default class Navbar extends React.Component {
   }
 
   signOut() {
-    localStorage.clear()
+    localStorage.clear();
+    this.props.history.push(`/`);
   }
 
   render() {
