@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import moment from "moment"
+import moment from "moment";
+import { Animated } from 'react-animated-css'
 
 import "./Account.css";
 
@@ -73,16 +74,18 @@ export class Account extends React.Component {
               <h1>Welcome {this.props.user.username}!</h1>
               <h2>A place to review your points and edit your times.</h2>
             </header>
-
-            <section id="points-section">
-              <header>
-                <h3>My Points</h3>
-                <div className="points">
-                  <span>{this.props.points}</span>
-                </div>
-              </header>
-            </section>
-
+            <Animated animationIn="tada" animationInDelay={500}>
+              <section id="points-section">
+                <header>
+                  <h3>My Points</h3>
+                  <Animated animationIn="tada" animationInDelay={1500}>
+                    <div className="points">
+                      <span>{this.props.points}</span>
+                    </div>
+                  </Animated>
+                </header>
+              </section>
+            </Animated>
             <section>
               <header>
                 <h3>My Times</h3>

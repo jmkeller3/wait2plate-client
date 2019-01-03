@@ -35,6 +35,7 @@ section {
 
 .information {
   border-radius: 15px;
+  width: 100%;
 }
 
 /* .information:hover, .information:focus {
@@ -74,8 +75,9 @@ main {
 }
 
 @media only screen and (min-width: 1025px) {
-  section {
-    width: 700px;
+  .information {
+    width: 100%;
+    height: 250px;
   }
 
   h1 {
@@ -90,6 +92,11 @@ main {
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr 1fr;
+    grid-gap: 40px;
+  }
+
+  .sign-login {
+    margin-top: 40px;
   }
 }

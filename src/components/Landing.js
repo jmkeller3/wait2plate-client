@@ -10,12 +10,14 @@ import { Animated } from 'react-animated-css'
 export default function Landing(props) {
   return (
     <main role="main">
-      <header role="banner">
-        <h1>Wait2Plate</h1>
-        <h2>Getting the best and fastest food, together</h2>
-      </header>
+      <Animated animationIn="pulse" animationInDelay={4300} isVisible={true}>
+        <header role="banner">
+          <h1>Wait2Plate</h1>
+          <h2>Getting the best and fastest food, together</h2>
+        </header>
+      </Animated>
       <div className="grid">
-        <Animated animationIn="fadeInLeft" animationInDelay={1500} isVisible={true}>
+        <Animated animationIn="fadeInLeft" animationInDelay={900} isVisible={true}>
           <section className="information">
 
             <h3>Purpose and Function of Web App</h3>
@@ -32,7 +34,7 @@ export default function Landing(props) {
         </p>
           </section>
         </Animated>
-        <Animated animationIn="fadeInRight" animationInDelay={2500} isVisible={true}>
+        <Animated animationIn="fadeInRight" animationInDelay={1800} isVisible={true}>
           <section className="information">
 
             <h3>Details and features about Web App</h3>
@@ -44,7 +46,7 @@ export default function Landing(props) {
         </p>
           </section>
         </Animated>
-        <Animated animationIn="fadeInLeft" animationInDelay={3800} isVisible={true}>
+        <Animated animationIn="fadeInLeft" animationInDelay={2700} isVisible={true}>
           <section className="information">
 
             <h3>Details about 3rd party APIs and security</h3>
@@ -56,7 +58,7 @@ export default function Landing(props) {
         </p>
           </section>
         </Animated>
-        <Animated animationIn="fadeInRight" animationInDelay={5000} isVisible={true}>
+        <Animated animationIn="fadeInRight" animationInDelay={3600} isVisible={true}>
           <section className="information">
 
             <h3>About Designer</h3>
@@ -70,7 +72,7 @@ export default function Landing(props) {
           </section>
         </Animated>
       </div>
-      <section className="information">
+      <section className="sign-login" >
         <Login />
       </section>
 
