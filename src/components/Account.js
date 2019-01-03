@@ -74,7 +74,7 @@ export class Account extends React.Component {
               <h2>A place to review your points and edit your times.</h2>
             </header>
 
-            <section>
+            <section id="points-section">
               <header>
                 <h3>My Points</h3>
                 <div className="points">

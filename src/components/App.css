@@ -4,6 +4,8 @@ body {
     background: #FCFAE1;
     background-repeat: no-repeat;
     color: #333;
+    display: grid;
+    grid-template-rows: 1fr auto
 }
 
 /* Red */

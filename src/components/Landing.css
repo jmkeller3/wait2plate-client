@@ -37,10 +37,10 @@ section {
   border-radius: 15px;
 }
 
-.information:hover, .information:focus {
+/* .information:hover, .information:focus {
   background-color: #BD8D46;
   color: #fff
-}
+} */
 
 /* 
 section:nth-child(odd) {

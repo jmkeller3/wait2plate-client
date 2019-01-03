@@ -1,12 +1,17 @@
 footer {
   text-align: center;
-  
   padding: 1rem;
   background-color: #BD8D46;
   color: #333;
-  font-weight: 600
+  font-weight: 600;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .foot {
-  height: calc(100% - 60px);
+  padding-top: 48px;
+  display: block;
+  width: 100%;
 }

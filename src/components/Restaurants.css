@@ -54,6 +54,7 @@ input {
     padding-left: 50%;
     padding-right: 5px;
     font-size: 12px;
+    font-weight: 600;
   }
 
   td:before {
@@ -64,6 +65,7 @@ input {
     padding-right: 10px;
     white-space: nowrap;
     font-weight: 600;
+    text-decoration: underline;
   }
 
   td:nth-of-type(1):before {

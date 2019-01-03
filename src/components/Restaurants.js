@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getRestaurantsThunk, selcectRestaurant } from "../actions";
 
 import "./Restaurants.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Restaurants extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ export class Restaurants extends React.Component {
         <section>
           <h3 className="restaurant-list">Search</h3>
           <div className="citySearch">
-            <label>Search by City</label>
+            <label>Search by City &nbsp;<FontAwesomeIcon icon="city"></FontAwesomeIcon></label>
             <input
               aria-label="Search by City"
               placeholder="City, State"

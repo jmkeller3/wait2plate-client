@@ -10,10 +10,10 @@ import { connect } from "react-redux";
 import { loginAction } from "../actions";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faClock, faShieldAlt, faUser, faRocket } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faClock, faShieldAlt, faUser, faRocket, faCity } from '@fortawesome/free-solid-svg-icons';
 import "./App.css"
 
-library.add(faBars, faTimes, faClock, faShieldAlt, faUser, faRocket);
+library.add(faBars, faTimes, faClock, faShieldAlt, faUser, faRocket, faCity);
 
 export class App extends React.Component {
   componentWillMount() {

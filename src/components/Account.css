@@ -2,8 +2,11 @@ main {
   text-align: center;
 }
 
-.account {
-  height: 85.1vh;
+#points-section {
+  background-color: #B9121B;
+  color: #fff;
+  width: 50%;
+  border-radius: 20px;
 }
 
 .points {
